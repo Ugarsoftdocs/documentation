@@ -19,6 +19,19 @@
     </head>
     <body>
         <h1 class="text-center">Hellohgtyryghjuk World</h1>
+    <?php
+function setHeight($minheight = 50) {
+    echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+
+         ?> 
+
+          
 
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
