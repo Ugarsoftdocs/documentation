@@ -22,6 +22,8 @@ class Mini extends Model{
         $this->insertIntoTable($data, $this->table);
     }
 
-
+    public function delete($where){
+        $this->deleteRecord($where, $this->table);
+    }
 
 }

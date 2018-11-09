@@ -24,10 +24,9 @@ require_once('Model/Mini.php');
 
 $model = new Mini();
 
-if($_SERVER['REQUEST_METHOD']  == 'POST'){
-    $model->insert(['email' => $_POST['email']]);
+  $model->delete(['email' => ('mohindez2222@gmail.com')]);
     // echo $_POST['email'];
-}
+
 ?> 
 
 
