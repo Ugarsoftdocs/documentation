@@ -67,7 +67,7 @@
           </div>
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
-            <form class="embed1" action="#">
+            <form class="embed1" action="index1.php">
               <div class="form-group">
                 <label class="text-black" for="name"></label>
                 <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
@@ -221,7 +221,7 @@
         </div>
       </div>  
     </footer>
-
+    
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

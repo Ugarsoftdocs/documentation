@@ -18,20 +18,33 @@
         <![endif]-->
     </head>
     <body>
-        <h1 class="text-center">Hellohgtyryghjuk World</h1>
-    <?php
-function setHeight($minheight = 50) {
-    echo "The height is : $minheight <br>";
+
+        <?php
+require_once('Model/Mini.php');
+
+$model = new Mini();
+
+if($_SERVER['REQUEST_METHOD']  == 'POST'){
+    $model->insert(['email' => $_POST['email']]);
+    // echo $_POST['email'];
 }
+?> 
 
-setHeight(350);
-setHeight(); // will use the default value of 50
-setHeight(135);
-setHeight(80);
 
-         ?> 
-
-          
+        
+        <form action="" method="POST" role="form">
+            <legend>Form title</legend>
+        
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
+            </div>
+        
+            
+        
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
 
         <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -39,3 +52,4 @@ setHeight(80);
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
+
