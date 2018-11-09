@@ -24,8 +24,12 @@ require_once('Model/Mini.php');
 
 $model = new Mini();
 
-  $model->delete(['email' => ('mohindez2222@gmail.com')]);
+    $check= $model->delete(['email' =>'mohindez2222@gmail.com' ]);
     // echo $_POST['email'];
+    if($check){
+        echo "successful";
+    }else
+     echo "";
 
 ?> 
 

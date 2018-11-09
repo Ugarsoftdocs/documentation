@@ -63,7 +63,7 @@ class Model extends DB{
     public function deleteRecord($where, $table){
         $col="";
         foreach($where as $key => $value){
-        $col .= $key."=".$value;
+        $col .= $key."="."'$value'";
         }
 
         $sql = "delete from $table where $col";
