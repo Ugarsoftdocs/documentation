@@ -25,5 +25,8 @@ class Mini extends Model{
     public function delete($where){
         $this->deleteRecord($where, $this->table);
     }
-
+    
+    public function update($update,$where){
+        $this->updateRecord($update, $where, $this->table);
+    }
 }

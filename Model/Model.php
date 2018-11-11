@@ -79,9 +79,27 @@ class Model extends DB{
         $this->conn->close();
     }
 
-    public function updateRecord(){
+    public function updateRecord($update,$where,$table){
+       $col="";
+       $val="";
+       foreach($update as $key => $value){
+           $col .= $key."="."'$value'";
+       }
+       foreach($where as $key => $value){
+        $val .= $key."="."'$value'";
+       }
+       $sql =  "UPDATE $table SET $col WHERE $val";
+       $result = $this->conn->query($sql);
 
-    }
+       if($result){
+        echo "successful";
+       }else{
+        echo $this->conn->error;
+
+       }
+       $this->conn->close();
+}
+    
 
     public function queryRecords($query_condition){
 
