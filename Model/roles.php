@@ -1,16 +1,22 @@
 <?php
 require_once('Model.php');
 
-class Mini extends Model{
+class roles extends Model{
     public $table;
     public $columns;
 
+
+    //you can instantiate an object with just a constructor when
+    //its just and independent  function not inside a class, here the name of the
+    //constructor becomes the name of object
+    //you can 
     public function __construct(){
         parent::__construct();
-        $this->table  = 'minies';
+        $this->table  = 'roles';
         $this->columns = [
             'id' => 'int auto_increment primary key',
-            'email' => 'varchar(50) unique'
+            'name' => 'VARCHAR(30) NOT NULL'
+
         ];
     }
 
@@ -28,5 +34,8 @@ class Mini extends Model{
     
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
+    }
+    public function query($query_condition,$qc){
+        $this->queryRecords($query_condition, $qc, $this->table);
     }
 }

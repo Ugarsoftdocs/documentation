@@ -67,22 +67,26 @@
           </div>
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
-            <form class="embed1" action="index1.php">
+            <form class="embed1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name">
+                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo $name;?>">
+                <span class="error"> <?php echo $nameErr;?></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="email"><b></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email;?>">
+                <span class="error"> <?php echo $emailErr;?></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="phone"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone">
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="<?php echo $number;?>">
+                <span class="error"> <?php echo $numberErr;?></span>
               </div>
               <div>
                 <label class="text-black" for="pwd"></label>
                 <input type="pwd" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                <span class="error"> <?php echo $pwdErr;?></span>
               </div><br>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
             </form><br><br>

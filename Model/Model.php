@@ -98,11 +98,35 @@ class Model extends DB{
 
        }
        $this->conn->close();
-}
-    
+}   
+    public function queryRecords($query_condition, $qc, $table){
+     $que = "";
+     $quer = "";
+       foreach($query_condition as $key => $value){         
+       $que .= $key;
+       }
+       foreach($qc as $key => $value){
+       $quer .= $key;
+       }
+      /* foreach($query_condition as $key => $value){
+       $query .= "'$value'";
+       }*/
+      
+      $sql="SELECT $que, $quer FROM $table";
+      $result = $this->conn->query($sql);
 
-    public function queryRecords($query_condition){
-
+      if ($result->num_rows > 0) {
+        // output data of each row
+        $row = $result->fetch_assoc(); 
+            echo "id: " . $row[$que]. " - Email: " . $row[$quer] ."<br>";//. " " . $row["lastname"]. "<br>";
+        }
+     else {
+        echo "0 results";
     }
+    
+       $this->conn->close();
+}
+       
+
 
 }
