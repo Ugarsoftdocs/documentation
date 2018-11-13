@@ -25,7 +25,7 @@
 require_once('Model/users.php');
 //require_once('Model/projects.php');
 
-
+//Easy access
 //$model = new roles();
 //$model->insert(['id' => 23, 'name'=>'client']);
 
