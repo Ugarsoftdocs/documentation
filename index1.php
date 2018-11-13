@@ -20,7 +20,10 @@
     <body>
 
         <?php
-//require_once('Model/validation.php');
+
+   $name = $email = $phone = $pwd = "";
+
+require_once('Model/validation.php');
 //require_once('Model/roles.php');
 require_once('Model/users.php');
 //require_once('Model/projects.php');
@@ -30,12 +33,12 @@ require_once('Model/users.php');
 //$model->insert(['id' => 23, 'name'=>'client']);
 
 $model = new users();
-$model->insert(['id' => 23, 'name'=>'client']);
+$model->insert(['name' => "'.$name.'", 'email' => "'.$email.'", 'phone_number' => "'.$phone.'", 'password' => "'.$pwd.'"]);
 
 //$model = new projects();
 //$model->insert(['id' => 23, 'name'=>'client']);
   
-?> 
+        ?>
        
         <form action="" method="POST" role="form">
             <legend>Form title</legend>

@@ -54,8 +54,14 @@
         </form>
       </div>
     </nav>
+   
+    <?php
+    
+    $nameErr = $emailErr = $phoneErr = $pwdErr = "";
+    $name = $email = $phone = "";
 
-
+    ?>
+    
     <!-- Masthead -->
     <header class="masthead">
       <div class="overlay"></div>
@@ -80,8 +86,8 @@
               </div>
               <div class="form-group">
                 <label class="text-black" for="phone"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="<?php echo $number;?>">
-                <span class="error"> <?php echo $numberErr;?></span>
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="<?php echo $phone;?>">
+                <span class="error"> <?php echo $phoneErr;?></span>
               </div>
               <div>
                 <label class="text-black" for="pwd"></label>
@@ -105,7 +111,7 @@
         </div>
       </div>
     </header>
-
+  
  
     <div class="container-fluid" style="padding-top: 0px;background-color:#f7f8fa; height:450px; width:100;"><br><br><br>
       <div class="row" >
