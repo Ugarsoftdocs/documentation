@@ -25,7 +25,7 @@
   </head>
 
   <body>
-
+ 
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light fixed-top" style="background-color: #35455d !important;">
       <div class="container-fluid">
@@ -55,7 +55,13 @@
       </div>
     </nav>
 
-
+<?php
+require_once('Model/validation.php');
+require_once('Model/users.php');
+$model = new users();
+$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+?>
+  
     <!-- Masthead -->
     <header class="masthead">
       <div class="overlay"></div>
@@ -67,7 +73,7 @@
           </div>
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
-            <form class="embed1" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+            <form class="embed1" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>"> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
                 <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo $name;?>">
@@ -79,8 +85,8 @@
                 <span class="error"> <?php echo $emailErr;?></span>
               </div>
               <div class="form-group">
-                <label class="text-black" for="phone"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="<?php echo $number;?>">
+                <label class="text-black" for="number"></label>
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="number" value="<?php echo $number;?>">
                 <span class="error"> <?php echo $numberErr;?></span>
               </div>
               <div>
@@ -105,7 +111,7 @@
         </div>
       </div>
     </header>
-
+  
  
     <div class="container-fluid" style="padding-top: 0px;background-color:#f7f8fa; height:450px; width:100;"><br><br><br>
       <div class="row" >

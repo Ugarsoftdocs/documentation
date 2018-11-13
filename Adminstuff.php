@@ -20,35 +20,27 @@
     <body>
 
         <?php
-//require_once('Model/validation.php');
+
+require_once('Model/validation.php');
 //require_once('Model/roles.php');
 require_once('Model/users.php');
 //require_once('Model/projects.php');
 
-//Easy access
-//$model = new roles();
-//$model->insert(['id' => 23, 'name'=>'client']);
 
 $model = new users();
-$model->insert(['id' => 23, 'name'=>'client']);
+$check=$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+if($check){
+    echo "successful";
+}
+else{
+    echo "unsuccessful";
+}
 
-//$model = new projects();
+//$model = new roles();
 //$model->insert(['id' => 23, 'name'=>'client']);
-  
-?> 
-       
-        <form action="" method="POST" role="form">
-            <legend>Form title</legend>
-        
-            <div class="form-group">
-                <label for="">Email</label>
-                <input type="email" name="email" class="form-control" id="" placeholder="Enter email">
-            </div>
-        
-            
-        
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+//$model = new projects();
+//$model->insert(['id' => 23, 'name'=>'client']); 
+?>
         
 
         <!-- jQuery -->
