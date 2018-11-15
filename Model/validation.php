@@ -23,16 +23,18 @@
           $emailErr = "Invalid email format"; 
         }
       }
-    /*
+    
       if (empty($_POST["number"])) {
         $numberErr = "number is required";
-      } 
-      else {
+      } else {
         $number = test_input($_POST["number"]);
-    
-      if(!preg_match("/^[0-9]*$/", $number)){
-        $numberErr = "Only digits allowed";
+      
+        if(!preg_match("/^[0-9]*$/", $number)){
+          $numberErr = "Only digits allowed";
+        }
       } 
+
+      /*
       else if((!length($number)==11)||(!length($number)==14)){
         $numberErr = "Enter valid number";
       }
