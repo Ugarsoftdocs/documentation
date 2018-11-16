@@ -1,55 +1,17 @@
-
-
-<!DOCTYPE html>
-<html lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Title Page</title>
-
-        <!-- Bootstrap CSS -->
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
-
-        <?php
+<?php
 
 require_once('Model/validation.php');
 //require_once('Model/roles.php');
 require_once('Model/users.php');
-//require_once('Model/projects.php');
-
+//require_once('Model/projects.php'
 $model = new users();
-if(($name!="")&&($email!="")&&($number1!="")&&($pwd!="")){
-$check=$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
-if(!$check){
-    echo "unsuccessful";
-}   
-else{
-    echo "successful";
+if(($name!="")&&($email!="")&&($number!="")&&($pwd!="")&&(!$nameErr)&&(!$emailErr)&&(!$numberErr)&&(!$pwdErr)){
+$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
 }
-}
-//header("refresh:2s; url = index.php");
 
+//header("refresh:2s; url = index.php");
 //$model = new roles();
 //$model->insert(['id' => 23, 'name'=>'client']);
 //$model = new projects();
 //$model->insert(['id' => 23, 'name'=>'client']); 
 ?>
-        
-
-        <!-- jQuery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Bootstrap JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </body>
-</html>
-
