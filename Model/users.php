@@ -14,7 +14,7 @@ class users extends Model{
         parent::__construct();
         $this->table  = 'users';
         $this->columns = [
-            'usersID' => 'int auto_increment primary key',
+            'users_id' => 'int auto_increment primary key',
             'name'  => 'VARCHAR(30) NOT NULL',
             'email' => 'varchar(50) unique',
             'phone_number' => 'int unique',

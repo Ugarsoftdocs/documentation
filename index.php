@@ -60,6 +60,7 @@ require_once('Model/validation.php');
 require_once('Model/users.php');
 $model = new users();
 $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+
 ?>
   
     <!-- Masthead -->
@@ -77,22 +78,22 @@ $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$numb
               <div class="form-group">
                 <label class="text-black" for="name"></label>
                 <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo $name;?>">
-                <span class="error"> <?php echo $nameErr;?></span>
+                <span class="error" style="color: red;"> <b><?php echo $nameErr;?><b></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="email"><b></label>
                 <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email;?>">
-                <span class="error"> <?php echo $emailErr;?></span>
+                <span class="error" style="color: red;"> <?php echo $emailErr;?></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="number"></label>
                 <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="number" value="<?php echo $number;?>">
-                <span class="error"> <?php echo $numberErr;?></span>
+                <span class="error" style="color: red;"> <?php echo $numberErr;?></span>
               </div>
               <div>
                 <label class="text-black" for="pwd"></label>
                 <input type="pwd" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                <span class="error"> <?php echo $pwdErr;?></span>
+                <span class="error" style="color: red;"> <?php echo $pwdErr;?></span>
               </div><br>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
             </form><br><br>

@@ -49,7 +49,7 @@ class Model extends DB{
         $columns = trim($columns, ',');
         $values = trim($values, ',');
         $sql = "insert into $table($columns) values ($values)";
-        // echo $sql;
+        //echo $sql;
         $result = $this->conn->query($sql);
 
         if($result){

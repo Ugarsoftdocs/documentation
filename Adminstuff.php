@@ -25,16 +25,10 @@ require_once('Model/validation.php');
 //require_once('Model/roles.php');
 require_once('Model/users.php');
 //require_once('Model/projects.php');
-
-
 $model = new users();
-$check=$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
-if($check){
-    echo "successful";
-}
-else{
-    echo "unsuccessful";
-}
+
+$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+  
 
 //$model = new roles();
 //$model->insert(['id' => 23, 'name'=>'client']);
