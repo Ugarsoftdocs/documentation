@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="">
     <head>
@@ -26,15 +27,17 @@ require_once('Model/validation.php');
 require_once('Model/users.php');
 //require_once('Model/projects.php');
 
-
 $model = new users();
+if(($name!="")&&($email!="")&&($number1!="")&&($pwd!="")){
 $check=$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
-if($check){
+if(!$check){
+    echo "unsuccessful";
+}   
+else{
     echo "successful";
 }
-else{
-    echo "unsuccessful";
 }
+//header("refresh:2s; url = index.php");
 
 //$model = new roles();
 //$model->insert(['id' => 23, 'name'=>'client']);

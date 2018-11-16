@@ -59,9 +59,11 @@
 require_once('Model/validation.php');
 require_once('Model/users.php');
 $model = new users();
+if(($name!="")&&($email!="")&&($number!="")&&($pwd!="")){
 $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+}
 ?>
-  
+
     <!-- Masthead -->
     <header class="masthead">
       <div class="overlay"></div>
@@ -73,7 +75,7 @@ $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$numb
           </div>
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
-            <form class="embed1" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>"> 
+            <form class="embed1" method="post" action=""> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
                 <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo $name;?>">
