@@ -1,8 +1,9 @@
 <?php
-
+//initializing the variables
   $nameErr = $emailErr = $numberErr = $pwdErr = "";
   $name = $email = $number = $pwd = "";
   
+ //passing the regex patterns to a variable 
   $w = '/^\+?(234703|234706|234803|234806|234810|234813|234814|234816|234903|234906)[0-9]{3}[0-9]{3}[0-9]{1}/';
   $v = '/^(0703|0706|0803|0806|0810|0813|0814|0816|0903|0906)[0-9]{3}[0-9]{3}[0-9]{1}/'; 
   $a = '/^\+?(234705|234805|234807|234811|234815|234905)[0-9]{3}[0-9]{3}[0-9]{1}/';
@@ -13,7 +14,8 @@
   $f = '/^(0809|0817|0818|0908|0909)[0-9]{3}[0-9]{3}[0-9]{1}/';
 
   if ($_SERVER["REQUEST_METHOD"] == "POST") { 
-    
+
+//Name validation
       if (empty($_POST["name"])) {
         $nameErr = "Name is required";
       } else {
@@ -55,9 +57,4 @@ if (empty($_POST["number"])) {
 }
 
 
-function test_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
+

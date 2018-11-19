@@ -1,7 +1,7 @@
 <?php
 require_once('Model.php');
 
-class roles extends Model{
+class Project extends Model{
     public $table;
     public $columns;
 
@@ -12,10 +12,14 @@ class roles extends Model{
     //you can 
     public function __construct(){
         parent::__construct();
-        $this->table  = 'roles';
+        $this->table  = 'projects';
         $this->columns = [
             'id' => 'int auto_increment primary key',
-            'name' => 'VARCHAR(30) NOT NULL'
+            'name' => 'VARCHAR(30) NOT NULL',
+            'project' => 'VARCHAR(300)',
+            'description' => 'VARCHAR(150)',
+            'created_at' =>'timestamp(6)',
+            'updated_at' =>'timestamp(6)' 
 
         ];
     }

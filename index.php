@@ -1,3 +1,20 @@
+<?php
+  require_once('validation/RegisterValidator.php');
+  require_once('Model/User.php');
+  $errors = [];
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $validate = new RegisterValidator;
+    $errors = $validate->validate($_POST);
+    if(count($errors) == 0){
+      // submit form
+      $model = new User();
+      $created = $model->insert($_POST);
+
+      die($created);
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,10 +72,6 @@
       </div>
     </nav>
 
-<?php
-require_once('Adminstuff.php');
-?>
-
     <!-- Masthead -->
     <header class="masthead">
       <div class="overlay"></div>
@@ -73,23 +86,23 @@ require_once('Adminstuff.php');
             <form class="embed1" method="post" action=""> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?= isset($_POST['name']) ? $_POST['name'] : ''; ?>">
-                <span class="error"> <?php echo $nameErr;?></span>
+                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
+                <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : '' ?></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="email"><b></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo $email;?>">
-                <span class="error"> <?php echo $emailErr;?></span>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : '' ?> </span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="number"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="number" value="<?php echo $number;?>">
-                <span class="error"> <?php echo $numberErr;?></span>
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone_number" value="<?php echo isset($_POST['phone_number']) ? $_POST['phone_number'] : '';?>">
+                <span class="error"><?php echo isset($errors['phone_number']) ? $errors['phone_number'] : '' ?> </span>
               </div>
               <div>
                 <label class="text-black" for="pwd"></label>
-                <input type="pwd" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-                <span class="error"> <?php echo $pwdErr;?></span>
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span>
               </div><br>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
             </form><br><br>

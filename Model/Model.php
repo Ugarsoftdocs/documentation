@@ -123,10 +123,28 @@ class Model extends DB{
      else {
         echo "0 results";
     }
-    
+        
        $this->conn->close();
 }
        
+
+public function getSingleRecord($columns = [], $condition, $table){
+    $col = '';
+    foreach($columns as $key => $value){         
+        $col .= $value. ', ';
+        }
+    if(strlen($col) == 0){
+        $col = '*';
+    }else{
+        $col = trim($col, ', '); 
+    }
+
+    $sql = "SELECT $col FROM $table $condition ";
+    $result = $this->conn->query($sql);
+    // var_dump($result->num_rows);
+    return $result->num_rows > 0;
+    
+}
 
 
 }

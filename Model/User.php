@@ -1,7 +1,7 @@
 <?php
 require_once('Model.php');
 
-class users extends Model{
+class User extends Model{
     public $table;
     public $columns;
 
@@ -39,7 +39,12 @@ class users extends Model{
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
     }
-    public function query($query_condition,$qc){
-        $this->queryRecords($query_condition, $qc, $this->table);
+
+    // public function query($query_condition,$qc){
+    //     $this->queryRecords($query_condition, $qc, $this->table);
+    // }
+
+    public function query($columns, $condition){
+        return $this->getSingleRecord($columns, $condition, $this->table);
     }
 }
