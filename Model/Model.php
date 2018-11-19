@@ -1,6 +1,6 @@
 <?php
 require_once('DB.php');
-
+require_once('Adminstuff.php');
 class Model extends DB{
 
     public $conn;
@@ -98,7 +98,7 @@ class Model extends DB{
 
        }
        $this->conn->close();
-}   
+    }   
     public function queryRecords($query_condition, $qc, $table){
      $que = "";
      $quer = "";
@@ -117,16 +117,19 @@ class Model extends DB{
 
       if ($result->num_rows > 0) {
         // output data of each row
-        $row = $result->fetch_assoc(); 
+        while($row = $result->fetch_assoc()){ 
             echo "id: " . $row[$que]. " - Email: " . $row[$quer] ."<br>";//. " " . $row["lastname"]. "<br>";
         }
-     else {
+      } else {
         echo "0 results";
-    }
+      }
     
        $this->conn->close();
+    }
 }
+
+
+
+
        
 
-
-}

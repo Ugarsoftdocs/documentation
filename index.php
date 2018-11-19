@@ -43,12 +43,15 @@
             <a style="margin-left:55px; font-size: 1.4em;" href="#">Contact</a>
           </li>
         </ul>
-        <form class="form-inline" action="#">
+
+
+
+        <form class="form-inline" method="post" action="<?php $current_file ?>">
           <div class="form-group">
-            <input style= "margin-right:20px;" type="email" class="form-control" id="email" placeholder="E-mail" name="email">
+            <input type="email" style= "margin-right:20px;" class="form-control" id="email" placeholder="E-mail" name="inputEmail">
           </div>
           <div class="form-group">
-            <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="pwd">
+            <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="inputPwd">
           </div>
           <button type="submit" class="btn btn-default">Log In</button>
         </form>
@@ -56,13 +59,10 @@
     </nav>
 
 <?php
-require_once('Model/validation.php');
-require_once('Model/users.php');
-$model = new users();
-$model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
+require_once('Adminstuff.php');
 
 ?>
-  
+
     <!-- Masthead -->
     <header class="masthead">
       <div class="overlay"></div>
@@ -74,7 +74,7 @@ $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$numb
           </div>
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
-            <form class="embed1" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>"> 
+            <form class="embed1" method="post" action=""> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
                 <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo $name;?>">
@@ -92,7 +92,7 @@ $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$numb
               </div>
               <div>
                 <label class="text-black" for="pwd"></label>
-                <input type="pwd" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
                 <span class="error" style="color: red;"> <?php echo $pwdErr;?></span>
               </div><br>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
