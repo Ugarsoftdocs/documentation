@@ -1,26 +1,26 @@
 <?php
 require_once('Model.php');
 
-class projects extends Model{
+class User extends Model{
     public $table;
     public $columns;
 
 
     //you can instantiate an object with just a constructor when
-    //its just and independent  function not inside a class, here the name of the
+    //its just an independent  function not inside a class, here the name of the
     //constructor becomes the name of object
-    //you can 
+     
     public function __construct(){
         parent::__construct();
-        $this->table  = 'projects';
+        $this->table  = 'users';
         $this->columns = [
-            'id' => 'int auto_increment primary key',
-            'name' => 'VARCHAR(30) NOT NULL',
-            'project' => 'VARCHAR(300)',
-            'description' => 'VARCHAR(150)',
+            'users_id' => 'int auto_increment primary key',
+            'name'  => 'VARCHAR(30) NOT NULL',
+            'email' => 'varchar(50) unique',
+            'phone_number' => 'varchar(255)',
+            'password' => 'varchar(11)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 
-
         ];
     }
 
@@ -39,7 +39,14 @@ class projects extends Model{
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
     }
-    public function query($query_condition,$qc){
-        $this->queryRecords($query_condition, $qc, $this->table);
+
+    // public function query($query_condition,$qc){
+    //     $this->queryRecords($query_condition, $qc, $this->table);
+    // }
+
+    public function query($columns, $condition){
+        return $this->getSingleRecord($columns, $condition, $this->table);
     }
+
+
 }
