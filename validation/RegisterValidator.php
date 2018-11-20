@@ -2,7 +2,8 @@
 // die(__DIR__);
 require_once('BaseValidator.php');
 require_once('Model/User.php');
-
+//hackerrank.com for practice
+//this accesses the properties and functions of a class
 class RegisterValidator extends BaseValidator{
 
     public $errors;

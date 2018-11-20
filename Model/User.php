@@ -40,13 +40,12 @@ class User extends Model{
         $this->updateRecord($update, $where, $this->table);
     }
 
-    // public function query($query_condition,$qc){
-    //     $this->queryRecords($query_condition, $qc, $this->table);
-    // }
-
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
     }
 
+    public function getUser($columns, $condition){
+        return $this->getRecord($columns, $condition, $this->table);
+    }
 
 }

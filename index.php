@@ -63,12 +63,12 @@
 
 
 
-        <form class="form-inline" method="post" action="<?php $current_file ?>">
+        <form class="form-inline" method="post" action='session/logIn.php'>
           <div class="form-group">
             <input type="email" style= "margin-right:20px;" class="form-control" id="email" placeholder="E-mail" name="inputEmail">
           </div>
           <div class="form-group">
-            <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="inputPwd">
+            <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="inputPwd">      
           </div>
           <button type="submit" class="btn btn-default">Log In</button>
         </form>
@@ -105,6 +105,7 @@
               <div>
                 <label class="text-black" for="pwd"></label>
                 <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+
                 <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span>
               </div><br>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>

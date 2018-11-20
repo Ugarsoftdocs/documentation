@@ -1,5 +1,5 @@
 <?php
-require_once('Model/DB.php');
+require_once('sessionCreation.php');
 require_once('sessionFunction.php');
 
 if (loggedIn()){

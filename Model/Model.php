@@ -1,6 +1,5 @@
 <?php
 require_once('DB.php');
-require_once('Adminstuff.php');
 class Model extends DB{
 
     public $conn;
@@ -122,16 +121,11 @@ class Model extends DB{
         }
       } else {
         echo "0 results";
-<<<<<<< HEAD
-      }
-    
-=======
     }
         
->>>>>>> 465623eeb772d347f8ef4c2859b35ee55c61a6a6
        $this->conn->close();
     }
-}
+
 
 public function getSingleRecord($columns = [], $condition, $table){
     $col = '';
@@ -146,13 +140,30 @@ public function getSingleRecord($columns = [], $condition, $table){
 
     $sql = "SELECT $col FROM $table $condition ";
     $result = $this->conn->query($sql);
-    // var_dump($result->num_rows);
+    
     return $result->num_rows > 0;
     
 }
 
 
+public function getRecord($columns = [], $condition, $table){
+    $col = '';
+    foreach($columns as $key => $value){         
+        $col .= $value. ', ';
+        }
+    if(strlen($col) == 0){
+        $col = '*';
+    }else{
+        $col = trim($col, ', '); 
+    }
+
+    $sql = "SELECT $col FROM $table $condition";
+    $result = $this->conn->query($sql);
+  
+    return $result->num_rows > 0 ? $result : null;
+    
+}
 
 
        
-
+}

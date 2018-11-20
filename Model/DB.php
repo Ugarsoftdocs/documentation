@@ -1,5 +1,7 @@
 <?php
-require_once('config/dbconfig.php');
+//locating a file from server itself rather than from the current file
+require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/config/dbconfig.php');
+
 class DB{
 
     public function connect(){
