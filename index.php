@@ -3,18 +3,31 @@
   require_once('Model/User.php');
   $errors = [];
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+     if($_POST['form-type'] == "register"){
     $validate = new RegisterValidator;
     $errors = $validate->validate($_POST);
     if(count($errors) == 0){
       // submit form
       $model = new User();
+      unset($_POST['form-type']);
       $created = $model->insert($_POST);
 
       die($created);
     }
   }
+  
+  }
 ?>
 
+<?php
+ $logErr ="";
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if($_POST['form-type'] =="login"){
+require_once('session/logIn.php');    
+
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,6 +48,7 @@
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+  
 
     <!-- Custom styles for this template -->
     <link href="assets/css/landing-page.css" rel="stylesheet">
@@ -45,7 +59,9 @@
  
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light fixed-top" style="background-color: #35455d !important;">
+    <span class="error" style ="font-size:15px; margin-left:1000px; color:white;"><?php echo $logErr?> </span>
       <div class="container-fluid">
+      
         <div class="navbar-header">
           <h1 style="color:wheat;"><b>UgarSoft</b></h1>
         </div>
@@ -63,14 +79,16 @@
 
 
 
-        <form class="form-inline" method="post" action='session/logIn.php'>
+        <form class="form-inline" method="post" action=''>
+          <input type="hidden" name= "form-type" value="login">
           <div class="form-group">
             <input type="email" style= "margin-right:20px;" class="form-control" id="email" placeholder="E-mail" name="inputEmail">
           </div>
           <div class="form-group">
             <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="inputPwd">      
-          </div>
+          </div>  
           <button type="submit" class="btn btn-default">Log In</button>
+          
         </form>
       </div>
     </nav>
@@ -87,27 +105,30 @@
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
             <form class="embed1" method="post" action=""> 
+              <input type = "hidden" name = "form-type" value ="register">
               <div class="form-group">
                 <label class="text-black" for="name"></label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
+                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo isset($_POST['name']) ? '': ''; ?>">
                 <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : '' ?></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="email"><b></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? '' : ''; ?>">
                 <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : '' ?> </span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="number"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone_number" value="<?php echo isset($_POST['phone_number']) ? $_POST['phone_number'] : '';?>">
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone_number" value="<?php echo isset($_POST['phone_number']) ? '' : '';?>">
                 <span class="error"><?php echo isset($errors['phone_number']) ? $errors['phone_number'] : '' ?> </span>
               </div>
-              <div>
+              <div class = "input-group" style="padding-top:25px">
                 <label class="text-black" for="pwd"></label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-
-                <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span>
+                <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="password" data-toggle="password">
+                <div class="input-group-append">
+                <span class="input-group-text"><i id="eye" style ="padding-top:5px;" onclick ="visibility()" class ="fa fa-eye-slash"></i></span>  
+                </div>
               </div><br>
+              <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span>
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
             </form><br><br>
             </div><br>
@@ -126,7 +147,7 @@
       </div>
     </header>
   
- 
+  
     <div class="container-fluid" style="padding-top: 0px;background-color:#f7f8fa; height:450px; width:100;"><br><br><br>
       <div class="row" >
           <div class="col-md-3" >
@@ -248,9 +269,13 @@
     
 
   <!-- Bootstrap core JavaScript -->
+  
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
     
+
+ 
   </body>
 
 </html>

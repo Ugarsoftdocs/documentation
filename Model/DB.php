@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/config/dbconfig.php');
 
 class DB{
 
-    public function connect(){
+    public function connect(){      
         global $dbconfig;
         $servername = $dbconfig['host'];
         $username = $dbconfig['username'];

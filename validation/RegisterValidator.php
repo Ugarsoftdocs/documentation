@@ -1,7 +1,7 @@
 <?php
 // die(__DIR__);
 require_once('BaseValidator.php');
-require_once('Model/User.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/Model/User.php');
 //hackerrank.com for practice
 //this accesses the properties and functions of a class
 class RegisterValidator extends BaseValidator{
@@ -26,12 +26,12 @@ class RegisterValidator extends BaseValidator{
         if($this->isEmpty($request['phone_number'])) $this->errors['phone_number'] = 'phone number field is required';
        
         if($this->isEmpty($request['password'])) $this->errors['password'] = 'password field is required';
-
         
         return $this->errors;
         
     }
 
+    
     public function emailAlreadyExists($email){
         $user = new User;
         return $user->query([], " where email = '$email'");
@@ -42,4 +42,11 @@ class RegisterValidator extends BaseValidator{
         return $user->query([], " where phone_number = '$phone_number'");
     }
     
+    
+    public function loginError($upass){
+    $user = new User;
+    return $user->getUser([], " where  password = '$upass'");
+}
+
+
 }

@@ -48,4 +48,5 @@ class User extends Model{
         return $this->getRecord($columns, $condition, $this->table);
     }
 
+    
 }

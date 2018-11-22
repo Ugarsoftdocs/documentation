@@ -21,7 +21,7 @@ class BaseValidator{
         $value = $this->sanitizeInput($value);
         return preg_match("/0[7-9][0-1][0-9]{8}/", $value);
     }
-
+    
     public function isLength($value, $length){
         $value = $this->sanitizeInput($value);
         return strlen($value) == $length;
