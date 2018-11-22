@@ -18,7 +18,7 @@ class User extends Model{
             'name'  => 'VARCHAR(30) NOT NULL',
             'email' => 'varchar(50) unique',
             'phone_number' => 'varchar(255)',
-            'password' => 'varchar(11)',
+            'password' => 'varchar(200)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 
         ];
@@ -39,10 +39,6 @@ class User extends Model{
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
     }
-
-    // public function query($query_condition,$qc){
-    //     $this->queryRecords($query_condition, $qc, $this->table);
-    // }
 
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);

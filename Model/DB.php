@@ -1,5 +1,6 @@
 <?php
-require_once('config/dbconfig.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/config/dbconfig.php');
+
 class DB{
 
     public function connect(){

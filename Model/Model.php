@@ -1,6 +1,6 @@
 <?php
 require_once('DB.php');
-require_once('Adminstuff.php');
+
 class Model extends DB{
 
     public $conn;
@@ -43,6 +43,11 @@ class Model extends DB{
         }
 
         foreach($data as $key => $value){
+            if($key == 'password'){
+                $hashed = md5($value);
+                $values .= "'$hashed',";
+                continue;
+            }
             $values .= "'$value',";
         }
 
@@ -53,7 +58,10 @@ class Model extends DB{
         $result = $this->conn->query($sql);
 
         if($result){
-            echo "successful";
+            echo '<script language = "javascript">';
+            echo 'alert("Registration Successful!");';
+            echo 'window.location.href = "user/index.html";';
+            echo '</script>';
         }else{
             echo $this->conn->error;
 
@@ -99,43 +107,11 @@ class Model extends DB{
        }
        $this->conn->close();
     }   
-    public function queryRecords($query_condition, $qc, $table){
-     $que = "";
-     $quer = "";
-       foreach($query_condition as $key => $value){         
-       $que .= $key;
-       }
-       foreach($qc as $key => $value){
-       $quer .= $key;
-       }
-      /* foreach($query_condition as $key => $value){
-       $query .= "'$value'";
-       }*/
-      
-      $sql="SELECT $que, $quer FROM $table";
-      $result = $this->conn->query($sql);
-
-      if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()){ 
-            echo "id: " . $row[$que]. " - Email: " . $row[$quer] ."<br>";//. " " . $row["lastname"]. "<br>";
-        }
-      } else {
-        echo "0 results";
-<<<<<<< HEAD
-      }
     
-=======
-    }
-        
->>>>>>> 465623eeb772d347f8ef4c2859b35ee55c61a6a6
-       $this->conn->close();
-    }
-}
 
-public function getSingleRecord($columns = [], $condition, $table){
-    $col = '';
-    foreach($columns as $key => $value){         
+    public function getSingleRecord($columns = [], $condition, $table){ 
+     $col = '';
+      foreach($columns as $key => $value){         
         $col .= $value. ', ';
         }
     if(strlen($col) == 0){
@@ -144,10 +120,11 @@ public function getSingleRecord($columns = [], $condition, $table){
         $col = trim($col, ', '); 
     }
 
-    $sql = "SELECT $col FROM $table $condition ";
-    $result = $this->conn->query($sql);
-    // var_dump($result->num_rows);
-    return $result->num_rows > 0;
+     $sql = "SELECT $col FROM $table $condition ";
+     $result = $this->conn->query($sql);
+    
+     return $result->num_rows > 0 ? $result : null;
+    }
     
 }
 

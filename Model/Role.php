@@ -35,7 +35,9 @@ class Role extends Model{
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
     }
-    public function query($query_condition,$qc){
-        $this->queryRecords($query_condition, $qc, $this->table);
+
+    public function query($columns, $condition){
+        return $this->getSingleRecord($columns, $condition, $this->table);
     }
+
 }

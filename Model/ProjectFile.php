@@ -1,7 +1,7 @@
 <?php
 require_once('Model.php');
 
-class Project extends Model{
+class ProjectFile extends Model{
     public $table;
     public $columns;
 
@@ -12,12 +12,12 @@ class Project extends Model{
     //you can 
     public function __construct(){
         parent::__construct();
-        $this->table  = 'projects';
+        $this->table  = 'project_files';
         $this->columns = [
             'id' => 'int auto_increment primary key',
-            'name' => 'VARCHAR(30) NOT NULL',
-            'project' => 'VARCHAR(150)',
-            'description' => 'VARCHAR(300)',
+            'link' => 'VARCHAR(150)',
+            'project_id' => 'int auto_increment NOT NULL',
+            'project_note_id' => 'VARCHAR(300)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 
 
@@ -39,7 +39,7 @@ class Project extends Model{
     public function update($update,$where){
         $this->updateRecord($update, $where, $this->table);
     }
-
+    
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
     }

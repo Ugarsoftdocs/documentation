@@ -1,10 +1,10 @@
 <?php
 
-require_once('Model/validation.php');
+//require_once('Model/validation.php');
 //require_once('Model/roles.php');
-require_once('Model/users.php');
+require_once('model/User.php');
 //require_once('Model/projects.php'
-$model = new users();
+$model = new User();
 if(($name!="")&&($email!="")&&($number!="")&&($pwd!="")&&(!$nameErr)&&(!$emailErr)&&(!$numberErr)&&(!$pwdErr)){
 $model->insert(['name' => "$name", 'email' => "$email", 'phone_number' => "$number", 'password' => "$pwd"]);
 }

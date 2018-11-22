@@ -1,18 +1,44 @@
 <?php
   require_once('validation/RegisterValidator.php');
-  require_once('Model/User.php');
-  $errors = [];
-  if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $validate = new RegisterValidator;
-    $errors = $validate->validate($_POST);
-    if(count($errors) == 0){
-      // submit form
-      $model = new User();
-      $created = $model->insert($_POST);
+  require_once('validation/LoginValidator.php');
 
-      die($created);
+  require_once('model/User.php');
+  
+  $errors = [];
+  $logerror = "";
+   
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_POST['form-type'] == 'register'){
+     $validate = new RegisterValidator;
+     $errors = $validate->validate($_POST);
+     if(count($errors) == 0){
+       // submit form
+       $model = new User();
+       unset($_POST['form-type']);
+       $model->insert($_POST);
+      }
+
+    } else {
+      $validatee = new LoginValidator;
+      $errors = $validatee->validatee($_POST);
+      if(count($errors) == 0){
+        $login = new User();
+        $useremail = $_POST['inputEmail'];
+        $userpwd = md5($_POST['inputPwd']);
+        $result = $login->query(['users_id'], " where email = '$useremail' AND password = '$userpwd'");
+        if($result != null){
+          $row = $result->fetch_assoc();
+          session_start();
+          $_SESSION['userId'] = $row['users_id'];
+          header('Location: user/index.html');
+       
+        } else {
+          $logerror = '*Wrong Email or Password';      
+        }
+      } 
     }
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,16 +62,23 @@
     <link href="assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+
     <!-- Custom styles for this template -->
     <link href="assets/css/landing-page.css" rel="stylesheet">
     <link href="assets/css/docproject.css" rel="stylesheet">
   </head>
 
   <body>
- 
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-light bg-light fixed-top" style="background-color: #35455d !important;">
+    <span class="error" style="color: white; font-size:15px; margin-left: 915px;"><?php echo $logerror?> </span>
+    <span class="error" style="color: white; font-size:15px; margin-left: 819px;"><?php echo isset($errors['inputEmail']) ? $errors['inputEmail'] : '' ?> </span>
+    <span class="error" style="color: white; font-size:15px; margin-left: 1025px;"><?php echo isset($errors['inputPwd']) ? $errors['inputPwd'] : '' ?> </span>  
+     
       <div class="container-fluid">
+
         <div class="navbar-header">
           <h1 style="color:wheat;"><b>UgarSoft</b></h1>
         </div>
@@ -62,51 +95,61 @@
         </ul>
 
 
-
-        <form class="form-inline" method="post" action="<?php $current_file ?>">
+        <form class="form-inline" method="post" action="">
           <div class="form-group">
             <input type="email" style= "margin-right:20px;" class="form-control" id="email" placeholder="E-mail" name="inputEmail">
           </div>
+          <input type="hidden" name="form-type" value="login">
           <div class="form-group">
             <input type="password" style= "margin-right:20px;" class="form-control" id="pwd" placeholder="Password" name="inputPwd">
           </div>
           <button type="submit" class="btn btn-default">Log In</button>
         </form>
-      </div>
+      </div>      
     </nav>
+     
+    
+    
+    
+    
 
     <!-- Masthead -->
     <header class="masthead">
-      <div class="overlay"></div>
+      <div class="overlay"></div>   
       <div class="container-fluid">
         <div class="row">
           <div class="col-xl-8" style="text-align: center;">
             <img src="assets/img/document-icon-25.png">
             <h1 class="mb-5" style="color: white; text-align: right;">Document it now!</h1>
           </div>
+          
           <div class="col-xl-4 mx-auto">
             <div class="embed" style="border-radius: 15px;">
             <form class="embed1" method="post" action=""> 
               <div class="form-group">
                 <label class="text-black" for="name"></label>
-                <input type="name" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : ''; ?>">
-                <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : '' ?></span>
+                <input type="name" class="form-control" id="name" placeholder="Enter username" name="name"> 
+                <span class="error" style="color: red;"><b><?php echo isset($errors['name']) ? $errors['name'] : '' ?><b></span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="email"><b></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>">
-                <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : '' ?> </span>
+                <input type="email" class="form-control" id="email" placeholder="Enter e-mail" name="email">
+                <span class="error" style="color: red;"><?php echo isset($errors['email']) ? $errors['email'] : '' ?> </span>
               </div>
               <div class="form-group">
                 <label class="text-black" for="number"></label>
-                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone_number" value="<?php echo isset($_POST['phone_number']) ? $_POST['phone_number'] : '';?>">
-                <span class="error"><?php echo isset($errors['phone_number']) ? $errors['phone_number'] : '' ?> </span>
+                <input type="phone" class="form-control" id="phone" placeholder="Enter phone number" name="phone_number">
+                <span class="error" style="color: red;"><?php echo isset($errors['phone_number']) ? $errors['phone_number'] : '' ?> </span>
               </div>
-              <div>
+              <input type="hidden" name="form-type" value="register">
+              <div class = "input-group" style = "padding-top: 25px;">
                 <label class="text-black" for="pwd"></label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
-                <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span>
-              </div><br>
+                <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="password" data-toggle = "password">
+                <div class = "input-group-append">
+                <span class = "input-group-text"><i id = "eye" style = "padding-top: 5px;" onclick="myFunction()" class = "fa fa-eye-slash"></i></span>
+                </div>
+              </div>
+              <span class="error" style="color: red;"><?php echo isset($errors['password']) ? $errors['password'] : '' ?> </span><br><br> 
               <button type="submit" class="btn btn-default"><b>Sign Up</b></button>
             </form><br><br>
             </div><br>
@@ -246,10 +289,12 @@
     </footer>
     
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap core JavaScript -->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <script src="assets/js/Password.js"></script>
     
   </body>
+
 
 </html>
