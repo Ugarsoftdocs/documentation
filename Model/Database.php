@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/config/dbconfig.php');
 
-class DB{
+class Database{
 
     public function connect(){
         global $dbconfig;

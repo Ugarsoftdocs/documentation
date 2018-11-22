@@ -1,7 +1,7 @@
 <?php
-require_once('DB.php');
+require_once('Database.php');
 
-class Model extends DB{
+class Model extends Database{
 
     public $conn;
 
