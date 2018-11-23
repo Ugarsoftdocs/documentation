@@ -1,6 +1,6 @@
 <?php
 require_once('Model.php');
-
+session_start();
 class User extends Model{
     public $table;
     public $columns;
@@ -29,19 +29,31 @@ class User extends Model{
     }
 
     public function insert($data){
-        $this->insertIntoTable($data, $this->table);
+        return $this->insertIntoTable($data, $this->table);
     }
 
     public function delete($where){
-        $this->deleteRecord($where, $this->table);
+        return $this->deleteRecord($where, $this->table);
     }
     
     public function update($update,$where){
-        $this->updateRecord($update, $where, $this->table);
+        return $this->updateRecord($update, $where, $this->table);
     }
 
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
+    }
+
+    public function authenticateUser($email, $password, $location = 'user/index1.php'){
+        $result = $this->query(['users_id'], " where email = '$email' AND password = '$password'");
+
+        if($result != null){
+           $row = $result->fetch_assoc();
+           
+            $_SESSION['userId'] = $row['users_id'];
+          header("Location: $location");
+        }
+       
     }
 
 

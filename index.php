@@ -13,27 +13,25 @@
      $errors = $validate->validate($_POST);
      if(count($errors) == 0){
        // submit form
-       $model = new User();
+       $user = new User();
        unset($_POST['form-type']);
-       $model->insert($_POST);
+       $result = $user->insert($_POST);
+       if($result){
+        $user->authenticateUser($_POST['email'], md5($_POST['password']));
+       }
       }
 
     } else {
       $validatee = new LoginValidator;
       $errors = $validatee->validatee($_POST);
       if(count($errors) == 0){
-        $login = new User();
+        $user = new User();
         $useremail = $_POST['inputEmail'];
         $userpwd = md5($_POST['inputPwd']);
-        $result = $login->query(['users_id'], " where email = '$useremail' AND password = '$userpwd'");
-        if($result != null){
-          $row = $result->fetch_assoc();
-          $_SESSION['userId'] = $row['users_id'];
-          header('Location: user/index1.php');
-       
-        } else {
-          $logerror = '*Wrong Email or Password';      
-        }
+        $user->authenticateUser($useremail, $userpwd);
+      } else {
+        $logerror = '*Wrong Email or Password';      
+        
       } 
     }
   }

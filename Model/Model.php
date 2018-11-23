@@ -98,8 +98,6 @@ class Model extends Database{
        $this->conn->close();
     }   
     
-//God is good
-//yes
 
     public function getSingleRecord($columns = [], $condition, $table){ 
      $col = '';
