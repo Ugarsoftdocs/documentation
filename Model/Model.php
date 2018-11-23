@@ -60,7 +60,7 @@ class Model extends Database{
         if($result){
             echo '<script language = "javascript">';
             echo 'alert("Registration Successful!");';
-            echo 'window.location.href = "user/index.html";';
+            echo 'window.location.href = "../user/index1.php";';
             echo '</script>';
         }else{
             echo $this->conn->error;

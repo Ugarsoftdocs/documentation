@@ -16,7 +16,7 @@ class ProjectFile extends Model{
         $this->columns = [
             'id' => 'int auto_increment primary key',
             'link' => 'VARCHAR(150)',
-            'project_id' => 'int auto_increment NOT NULL',
+            'project_id' => 'int NOT NULL',
             'project_note_id' => 'VARCHAR(300)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 

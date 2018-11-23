@@ -7,8 +7,9 @@ session_start();
 function getAuthenticatedUser(){
   $profilename = new User();
   
-  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
-
+  $result = $profilename->query(['name'], " where users_id =".$_SESSION['userId']);
+  var_dump($result);
+  die('here');
   if($result != null){
     $row = $result->fetch_assoc();
     return $row['name'];
