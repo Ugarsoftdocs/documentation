@@ -28,9 +28,8 @@
         $result = $login->query(['users_id'], " where email = '$useremail' AND password = '$userpwd'");
         if($result != null){
           $row = $result->fetch_assoc();
-          session_start();
           $_SESSION['userId'] = $row['users_id'];
-          header('Location: user/index.html');
+          header('Location: user/index1.php');
        
         } else {
           $logerror = '*Wrong Email or Password';      

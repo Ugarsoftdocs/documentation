@@ -1,3 +1,20 @@
+<?php
+require_once('../model/User.php');
+session_start();
+
+
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
+
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row['name'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -245,8 +262,8 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
             <a class="active" href="index.html">
               <i class="fa fa-dashboard"></i>
@@ -544,7 +561,7 @@
                 <div class="white-panel pn">
                   <div class="white-header">
                     <h5>TOP USER</h5>
-                  </div>
+                  </div> 
                   <p><img src="img/ui-zac.jpg" class="img-circle" width="50"></p>
                   <p><b>Zac Snider</b></p>
                   <div class="row">

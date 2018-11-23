@@ -121,7 +121,7 @@ class Model extends Database{
     }
 
      $sql = "SELECT $col FROM $table $condition ";
-     var_dump($sql);
+    
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;
