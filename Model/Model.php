@@ -25,7 +25,7 @@ class Model extends Database{
         )";
 
         $result = $this->conn->query($sql);
-        $this->conn->close();
+       
         if($result){
             echo "successful";
         }else{
@@ -56,17 +56,7 @@ class Model extends Database{
         $sql = "insert into $table($columns) values ($values)";
         //echo $sql;
         $result = $this->conn->query($sql);
-
-        if($result){
-            echo '<script language = "javascript">';
-            echo 'alert("Registration Successful!");';
-            echo 'window.location.href = "user/index.html";';
-            echo '</script>';
-        }else{
-            echo $this->conn->error;
-
-        }
-        $this->conn->close();
+        return $result;
     }
     public function deleteRecord($where, $table){
         $col="";
@@ -108,6 +98,8 @@ class Model extends Database{
        $this->conn->close();
     }   
     
+//God is good
+//yes
 
     public function getSingleRecord($columns = [], $condition, $table){ 
      $col = '';
@@ -121,7 +113,7 @@ class Model extends Database{
     }
 
      $sql = "SELECT $col FROM $table $condition ";
-    
+    // var_dump($sql);
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;
