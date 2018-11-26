@@ -25,7 +25,7 @@ class Model extends Database{
         )";
 
         $result = $this->conn->query($sql);
-        $this->conn->close();
+       
         if($result){
             echo "successful";
         }else{
@@ -54,19 +54,9 @@ class Model extends Database{
         $columns = trim($columns, ',');
         $values = trim($values, ',');
         $sql = "insert into $table($columns) values ($values)";
-        //echo $sql;
+        
         $result = $this->conn->query($sql);
-
-        if($result){
-            echo '<script language = "javascript">';
-            echo 'alert("Registration Successful!");';
-            echo 'window.location.href = "../user/index1.php";';
-            echo '</script>';
-        }else{
-            echo $this->conn->error;
-
-        }
-        $this->conn->close();
+        return $result;
     }
     public function deleteRecord($where, $table){
         $col="";
@@ -87,20 +77,18 @@ class Model extends Database{
         $this->conn->close();
     }
 
-    public function updateRecord($update,$where,$table){
+    public function updateRecord($update, $condition, $table){
        $col="";
        $val="";
        foreach($update as $key => $value){
-           $col .= $key."="."'$value'";
-       }
-       foreach($where as $key => $value){
-        $val .= $key."="."'$value'";
-       }
-       $sql =  "UPDATE $table SET $col WHERE $val";
+           $col .= $key."="."'$value' ,";
+        }
+        $col =  trim($col, ',');
+       $sql =  "UPDATE $table SET $col $condition";
        $result = $this->conn->query($sql);
-
+       
        if($result){
-        echo "successful";
+        //echo "successful";
        }else{
         echo $this->conn->error;
 
@@ -120,8 +108,8 @@ class Model extends Database{
         $col = trim($col, ', '); 
     }
 
-     $sql = "SELECT $col FROM $table $condition ";
-    
+     $sql = "SELECT $col FROM $table $condition";
+     
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;

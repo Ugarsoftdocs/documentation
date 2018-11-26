@@ -1,3 +1,36 @@
+<?php
+require_once('../validation/UpdateValidator.php');
+require_once('../model/User.php');
+
+$errors = [];
+     
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone_number'];
+  $fblink = $_POST['facebook_link'];
+  $twlink = $_POST['twitter_link'];
+  $validateee = new UpdateValidator;
+  $errors = $validateee->validateee(['name'=>"$name", 'email'=>"$email", 'phone_number'=>"$phone", 'facebook_link'=>"$fblink", 'twitter_link'=>"$twlink"]);
+  if(count($errors) == 0){
+   $user = new User();
+   $user->update(['name'=>"$name", 'email'=>"$email", 'phone_number'=>"$phone", 'facebook_link'=>"$fblink", 'twitter_link'=>"$twlink"], " where users_id =".$_SESSION['userId']);
+  }
+} 
+
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name', 'email', 'phone_number', 'facebook_link', 'twitter_link'], " where users_id =".$_SESSION['userId']);
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row;
+  }
+}
+$authUser = getAuthenticatedUser();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +75,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -231,7 +264,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -244,117 +277,39 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+        <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <h5 class="centered"><?php echo $authUser["name"] ?></h5>
           <li class="mt">
-            <a href="index.html">
+            <a>
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
-              </a>
-            <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Components</span>
-              </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
-              </a>
-            <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Forms</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li class="active"><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
+            </a>
           </li>
           <li>
-            <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
-            <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
+            <a href="">
+              <i class="fa fa-user"></i>
+              <span>Profile</span>
+            </a>
           </li>
           <li>
-            <a href="google_maps.html">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
+            <a href="">
+              <i class="fa fa-file"></i>
+              <span>Projects</span>
+            </a>
           </li>
-        </ul>
+          <li>
+            <a href="">
+              <i class="fa fa-gear"></i>
+              <span>Setting</span>
+            </a>
+          </li>
+          <li>
+            <a href="../login/Log_out.php">
+              <i class="fa fa-sign-out"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+        <ul>
         <!-- sidebar menu end-->
       </div>
     </aside>
@@ -363,56 +318,61 @@
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content">
+    <section id="main-content" style="overflow-x: hidden;">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Contact Form</h3>
+        <h3><i class="fa fa-angle-right"></i> Profile</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h4 class="title">Contact Form</h4>
+           <div class="form-panel">
+            <h4 class="title">My Details</h4>
             <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="contactform/contactform.php" method="POST">
+            <form  role="form" action="" method="POST">
 
               <div class="form-group">
-                <input type="name" name="name" class="form-control" id="contact-name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                <input type="name" name="name" class="form-control" id="contact-name" placeholder="Name" data-rule="minlen:1" data-msg="Please enter a name" value="<?php echo $authUser["name"]; ?>">
+                <span class="error" style="color: red;"><?php echo isset($errors['name']) ? $errors['name'] : '' ?> </span>
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="email" name="email" class="form-control" id="contact-email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+                <input type="email" name="email" class="form-control" id="contact-email" placeholder="E-mail" data-rule="email" data-msg="Please enter an e-mail" value="<?php echo $authUser["email"]; ?>">
+                <span class="error" style="color: red;"><?php echo isset($errors['email']) ? $errors['email'] : '' ?> </span> 
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="subject" class="form-control" id="contact-subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                <input type="phone" name="phone_number" class="form-control" id="phone" placeholder="Phone Number" data-rule="minlen:11" data-msg="Please enter a valid phone number" value="<?php echo $authUser["phone_number"]?>">
+                <span class="error" style="color: red;"><?php echo isset($errors['phone_number']) ? $errors['phone_number'] : '' ?> </span>  
                 <div class="validate"></div>
               </div>
-
               <div class="form-group">
-                <textarea class="form-control" name="message" id="contact-message" placeholder="Your Message" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
-                <div class="validate"></div>
+                <input type="text" name="facebook_link" class="form-control" id="link" placeholder="My Facebook URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["facebook_link"]?>">
+                <span class="error" style="color: red;"><?php echo isset($errors['facebook_link']) ? $errors['facebook_link'] : '' ?> </span>  
+              <div class="validate"></div>
               </div>
-
-              <div class="loading"></div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-
+              <div class="form-group">
+                <input type="text" name="twitter_link" class="form-control" id="link" placeholder="My Twitter URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["twitter_link"] ?>">
+                <span class="error" style="color: red;"><?php echo isset($errors['twitter_link']) ? $errors['twitter_link'] : '' ?> </span>  
+                <div class="validate"></div>
+              </div><br>
               <div class="form-send">
-                <button type="submit" class="btn btn-large btn-primary">Send Message</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
               </div>
 
-            </form>
+            </form><br><br><br>
+           </div>
           </div>
 
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <h4 class="title">Contact Details</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+            <h4 class="title" style="visibility: hidden;">Info</h4>
+            <p>Your details which were filled during registration are displayed in the form. You can update these details at your convenience.</p>
             <ul class="contact_details">
-              <li><i class="fa fa-envelope-o"></i> info@yoursite.com</li>
-              <li><i class="fa fa-phone-square"></i> +34 5565 6555</li>
-              <li><i class="fa fa-home"></i> Some Fine Address, 887, Madrid, Spain.</li>
+              <li><i class="fa fa-envelope-o"></i> ugarsoft@gmail.com</li>
+              <li><i class="fa fa-phone-square"></i> +234 703 942 8639</li>
+              <li><i class="fa fa-home"></i> Bethel plaza, dustbin bus-stop, Enugu, Nigeria.</li>
             </ul>
             <!-- contact_details -->
           </div>
-        </div>
+        </div><br><br>
         <!-- /row -->
 
 
@@ -426,7 +386,7 @@
     <footer class="site-footer">
       <div class="text-center">
         <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+          &copy; Copyrights <strong>UgarSoft</strong>. All Rights Reserved
         </p>
         <div class="credits">
           <!--
@@ -435,9 +395,9 @@
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
+          
         </div>
-        <a href="form_component.html#" class="go-top">
+        <a href="" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>

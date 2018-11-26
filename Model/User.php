@@ -1,6 +1,6 @@
 <?php
 require_once('Model.php');
-
+session_start();
 class User extends Model{
     public $table;
     public $columns;
@@ -19,6 +19,8 @@ class User extends Model{
             'email' => 'varchar(50) unique',
             'phone_number' => 'varchar(255)',
             'password' => 'varchar(200)',
+            'facebook_link' => 'varchar(200)',
+            'twitter_link' => 'varchar(200)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 
         ];
@@ -29,19 +31,31 @@ class User extends Model{
     }
 
     public function insert($data){
-        $this->insertIntoTable($data, $this->table);
+        return $this->insertIntoTable($data, $this->table);
     }
 
     public function delete($where){
-        $this->deleteRecord($where, $this->table);
+        return $this->deleteRecord($where, $this->table);
     }
     
-    public function update($update,$where){
-        $this->updateRecord($update, $where, $this->table);
+    public function update($update, $condition){
+        return $this->updateRecord($update, $condition, $this->table);
     }
 
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
+    }
+
+    public function authenticateUser($email, $password, $location = 'user/index1.php'){
+        $result = $this->query(['users_id'], " where email = '$email' AND password = '$password'");
+
+        if($result != null){
+           $row = $result->fetch_assoc();
+           
+            $_SESSION['userId'] = $row['users_id'];
+          header("Location: $location");
+        }
+       
     }
 
 

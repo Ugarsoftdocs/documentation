@@ -13,27 +13,25 @@
      $errors = $validate->validate($_POST);
      if(count($errors) == 0){
        // submit form
-       $model = new User();
+       $user = new User();
        unset($_POST['form-type']);
-       $model->insert($_POST);
+       $result = $user->insert($_POST);
+       if($result){
+         $user->authenticateUser($_POST['email'], md5($_POST['password']));
+        }
       }
 
     } else {
       $validatee = new LoginValidator;
       $errors = $validatee->validatee($_POST);
       if(count($errors) == 0){
-        $login = new User();
+        $user = new User();
         $useremail = $_POST['inputEmail'];
         $userpwd = md5($_POST['inputPwd']);
-        $result = $login->query(['users_id'], " where email = '$useremail' AND password = '$userpwd'");
-        if($result != null){
-          $row = $result->fetch_assoc();
-          $_SESSION['userId'] = $row['users_id'];
-          header('Location: user/index1.php');
-       
-        } else {
-          $logerror = '*Wrong Email or Password';      
-        }
+        $user->authenticateUser($useremail, $userpwd);
+      } else {
+        $logerror = '*Wrong Email or Password';      
+        
       } 
     }
   }
@@ -158,7 +156,7 @@
                   <button type="submit" id="shift" class="btn" style="background-color: #49649f; color: white";><span class="fab fa-facebook"></span> Log in with facebook</button>
                 </div>
                 <div class="col-xl-2 mx-auto">
-                  <button type="submit" class="btn btn-info"><span class="fab fa-twitter"></span> Log in with Twitter</button>
+                  <button type="submit" class="btn" style="background-color: #4fc1e9; color: white"><span class="fab fa-twitter"></span> Log in with Twitter</button>
                 </div>
               </div> 
             </div>
@@ -273,7 +271,7 @@
               </li>
               <li class="list-inline-item mr-3">
                 <a href="#">
-                  <i class="fab fa-twitter-square fa-2x fa-fw" style="color: #17a2b8";></i>
+                  <i class="fab fa-twitter-square fa-2x fa-fw" style="color: #4fc1e9";></i>
                 </a>
               </li>
               <li class="list-inline-item">
