@@ -23,6 +23,9 @@ body {
     margin: 0px !important;
     font-size:13px;
 }
+.maincontent{
+     height:300px !important;
+}
 
 ul li {
     list-style: none;
@@ -314,8 +317,8 @@ ul.sidebar-menu li ul.sub li a {
     line-height: 35px;
     height: 35px;
     -webkit-transition: all 0.3s ease;
-    -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     color: #aeb2b7;

@@ -1,6 +1,6 @@
 <?php
 require_once('Model.php');
-session_start();
+
 class User extends Model{
     public $table;
     public $columns;
