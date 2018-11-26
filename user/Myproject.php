@@ -1,3 +1,35 @@
+<?php
+require_once('../model/User.php');
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
+
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row['name'];
+  }
+}
+
+?>
+
+           <?php
+           require_once('../model/Project.php');
+           require_once('../validation/Mpv.php');
+           
+           if($_SERVER['REQUEST_METHOD'] == 'POST') {
+           $name = $_POST['name'];
+           $project = $_POST['project'];
+           $message = $_POST['message'];
+           $valid = new Mpv;
+           $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
+           if(count($errors) == 0){
+           $myproject = new Project;
+           $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+            }
+          }
+              ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +62,7 @@
 </head>
 
 <body>
-  <section id="container">
+  <section id="container" >
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -40,7 +72,7 @@
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -242,133 +274,175 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a href="index.html">
+            <a class="active" href="index1.php">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
-              </a>
-            <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Components</span>
-              </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
-              </a>
-            <ul class="sub">
-              <li class="active"><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Forms</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
+            </a>
           </li>
           <li>
-            <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
+            <a href="calender.html">
+              <i class="fa fa-user"></i>
+              <span>Profile</span>
               </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
+              <i class="fa fa-file"></i>
+              <span>Projects</span>
+            </a>
             <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
+              <li><a href="Createproject.html">Create project</a></li>
+              <li><a href="Joinproject.html">Join project</a></li>
+              <li><a href="Myproject.php">My Project</a></li>
+            
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
+              <i class="fa fa-gear"></i>
+              <span>Setting</span>
+            </a>
           </li>
-          <li>
-            <a href="google_maps.html">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-sign-out"></i>
+              <span>Logout</span>
+            </a>
           </li>
         </ul>
         <!-- sidebar menu end-->
       </div>
     </aside>
+ 
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content">
+    <section id="main-content" style="height:1100px !important;">
       <section class="wrapper site-min-height">
-        <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+        <!-- page start-->
+        <div class="chat-room mt">
+          <aside class="mid-side">
+            <div class="chat-room-head">
+              <h3>My Project</h3>
+              <form action="" class="pull-right position">
+                <input type="text" placeholder="Search" class="form-control search-btn ">
+              </form>
+            </div>
+            <div class="room-desk">
+              <h4 class="pull-left"></h4>
+              <h3><i class="fa fa-angle-right"></i> myProject Form</h3>
+        <!-- BASIC FORM ELELEMNTS -->
+
+
         <div class="row mt">
-          <div class="col-lg-12">
-            <p>Place your content here.</p>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div id="message"></div>
+            <form class="contact-form php-mail-form" role="form" action="" method="POST">
+
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="contact-text" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                <span class="error" style="color: red;"><b><?php echo isset($errors['name']) ? $errors['name'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="project" class="form-control" id="contact-text" placeholder="Project" data-rule="text" data-msg="Please enter a valid text">
+                <span class="error" style="color: red;"><b><?php echo isset($errors['project']) ? $errors['project'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" id="contact-message" placeholder="Descsription" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                <span class="error" style="color: red;"><b><?php echo isset($errors['message']) ? $errors['message'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
+              <div class="loading"></div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+              <input type="hidden" name="form-type" value="login">
+              <div class="form-send">
+                <button type="submit" class="btn btn-large btn-primary">+ Create myProject</button>
+              </div>
+          </form>
+
+
+              <div class="room-desk">
+                    <div class="room-box">
+                      <h5 class="text-primary"><a href="chat_room.html">myProject 1</a></h5>
+                      <p>We talk here about our dashboard. No support given.</p>
+                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                    </div>
+                    <div class="room-box">
+                      <h5 class="text-primary"><a href="chat_room.html">myProject 2</a></h5>
+                      <p>Support chat for Dashio. Purchase ticket needed.</p>
+                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                    </div>
+                    <div class="room-box">
+                      <h5 class="text-primary"><a href="chat_room.html">myProject 3</a></h5>
+                      <p>Technical support for our front-end. No customization.</p>
+                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                    </div>
+                  </div>
+            </form>
           </div>
         </div>
+      </aside>
+          <!--team members side-->          
+          <aside class="right-side">
+            <div class="user-head">
+              <a href="#" class="chat-tools btn-theme"><i class="fa fa-cog"></i> </a>
+              <a href="#" class="chat-tools btn-theme03"><i class="fa fa-key"></i> </a>
+            </div>
+            <div class="invite-row">
+              <h4 class="pull-left">Team Members</h4>
+              <a href="#" class="btn btn-theme04 pull-right">+ Invite</a>
+            </div>
+            <ul class="chat-available-user">
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-02.jpg" width="32">
+                  Paul Brown
+                  <span class="text-muted">1h:02m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-05.jpg" width="32">
+                  David Duncan
+                  <span class="text-muted">1h:08m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-07.jpg" width="32">
+                  Laura Smith
+                  <span class="text-muted">1h:10m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-08.jpg" width="32">
+                  Julia Schultz
+                  <span class="text-muted">3h:00m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-01.jpg" width="32">
+                  Frank Arias
+                  <span class="text-muted">4h:22m</span>
+                  </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+        <!-- page end-->
       </section>
       <!-- /wrapper -->
     </section>
@@ -389,7 +463,7 @@
           -->
           Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="blank.html#" class="go-top">
+        <a href="lobby.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
@@ -399,8 +473,6 @@
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
-  <script src="lib/jquery.ui.touch-punch.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="lib/jquery.scrollTo.min.js"></script>
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>

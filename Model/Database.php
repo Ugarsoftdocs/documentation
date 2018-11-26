@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/config/dbconfig.php');
-
+session_start();
 class Database{
 
     public function connect(){

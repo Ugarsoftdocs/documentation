@@ -25,11 +25,11 @@ class Project extends Model{
     }
 
     public function create(){
-        $this->createTable($this->columns, $this->table);
+        return $this->createTable($this->columns, $this->table);
     }
 
     public function insert($data){
-        $this->insertIntoTable($data, $this->table);
+       return $this->insertIntoTable($data, $this->table);
     }
 
     public function delete($where){

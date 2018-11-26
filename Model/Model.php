@@ -83,10 +83,7 @@ class Model extends Database{
        foreach($update as $key => $value){
            $col .= $key."="."'$value'";
        }
-       foreach($where as $key => $value){
-        $val .= $key."="."'$value'";
-       }
-       $sql =  "UPDATE $table SET $col WHERE $val";
+       $sql =  "UPDATE $table SET $col WHERE $where";
        $result = $this->conn->query($sql);
 
        if($result){
@@ -111,7 +108,7 @@ class Model extends Database{
     }
 
      $sql = "SELECT $col FROM $table $condition ";
-    // var_dump($sql);
+    // var_dump($sql); 
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;
