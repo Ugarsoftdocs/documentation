@@ -280,8 +280,8 @@ function getAuthenticatedUser(){
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.html">Create project</a></li>
-              <li><a href="Joinproject.html">Join project</a></li>
+              <li><a href="Createproject.php">Create project</a></li>
+              <li><a href="Joinproject.php">Join project</a></li>
               <li><a href="Myproject.php">My Project</a></li>           
             </ul>
           </li>

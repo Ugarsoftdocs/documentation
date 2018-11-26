@@ -1,3 +1,19 @@
+<?php
+require_once('../model/User.php');
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
+
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row['name'];
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +36,7 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="css/table-responsive.css" rel="stylesheet">
 
   <!-- =======================================================
     Template Name: Dashio
@@ -242,115 +259,43 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
+          <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a href="index.html">
+            <a class="active" href="index1.php">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
-              </a>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
-              <span>UI Elements</span>
-              </a>
-            <ul class="sub">
-              <li><a href="general.html">General</a></li>
-              <li><a href="buttons.html">Buttons</a></li>
-              <li><a href="panels.html">Panels</a></li>
-              <li><a href="font_awesome.html">Font Awesome</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Components</span>
-              </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a class="active" href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Extra Pages</span>
-              </a>
-            <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li class="active"><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Forms</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-th"></i>
-              <span>Data Tables</span>
-              </a>
-            <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li><a href="advanced_table.html">Advanced Table</a></li>
-            </ul>
+            </a>
           </li>
           <li>
-            <a href="inbox.html">
-              <i class="fa fa-envelope"></i>
-              <span>Mail </span>
-              <span class="label label-theme pull-right mail-info">2</span>
+            <a href="calender.html">
+              <i class="fa fa-user"></i>
+              <span>Profile</span>
               </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class=" fa fa-bar-chart-o"></i>
-              <span>Charts</span>
-              </a>
+              <i class="fa fa-file"></i>
+              <span>Projects</span>
+            </a>
             <ul class="sub">
-              <li><a href="morris.html">Morris</a></li>
-              <li><a href="chartjs.html">Chartjs</a></li>
-              <li><a href="flot_chart.html">Flot Charts</a></li>
-              <li><a href="xchart.html">xChart</a></li>
+              <li><a href="Createproject.php">Create project</a></li>
+              <li><a href="Joinproject.php">Join project</a></li>
+              <li><a href="Myproject.php">My Project</a></li>
+            
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
-              <i class="fa fa-comments-o"></i>
-              <span>Chat Room</span>
-              </a>
-            <ul class="sub">
-              <li><a href="lobby.html">Lobby</a></li>
-              <li><a href="chat_room.html"> Chat Room</a></li>
-            </ul>
+              <i class="fa fa-gear"></i>
+              <span>Setting</span>
+            </a>
           </li>
-          <li>
-            <a href="google_maps.html">
-              <i class="fa fa-map-marker"></i>
-              <span>Google Maps </span>
-              </a>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-sign-out"></i>
+              <span>Logout</span>
+            </a>
           </li>
         </ul>
         <!-- sidebar menu end-->
@@ -362,120 +307,98 @@
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
     <section id="main-content">
-      <section class="wrapper site-min-height">
-        <div class="row mt mb">
+      <section class="wrapper">
+        <h3><i class="fa fa-angle-right"></i>myFiletable</h3>
+        <div class="row mt">
           <div class="col-lg-12">
-            <h3><i class="fa fa-angle-right"></i> F.A.Q</h3>
-            <br>
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-question fa-3x"></i></a>
-                </div>
-                <h4>1. Knowledge-Base</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
-              </div>
+            <div class="content-panel">
+              <h4><i class="fa fa-angle-right"></i>myFiletable</h4>
+              <section id="unseen">
+                <table class="table table-bordered table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th>file ID</th>
+                      <th>file Name</th>
+                      <th class="numeric">View</th>
+                      <th class="numeric">Update</th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>OGWUGO PLATFORM </td>
+                      <td class="numeric" style="background-color:lightblue;color:black;">View</td>
+                      <td class="numeric" style="background-color:lightblue;color:black">Update</td>
+                    </tr>
+                    <tr>
+                      <td>AAD</td>
+                      <td>ARDENT LEISURE GROUP</td>
+                      <td class="numeric">$1.15</td>
+                      <td class="numeric"> +0.02</td>
+                    </tr>
+                    <tr>
+                      <td>AAX</td>
+                      <td>AUSENCO LIMITED</td>
+                      <td class="numeric">$4.00</td>
+                      <td class="numeric">-0.04</td>
+                    </tr>
+                    <tr>
+                      <td>ABC</td>
+                      <td>ADELAIDE BRIGHTON LIMITED</td>
+                      <td class="numeric">$3.00</td>
+                      <td class="numeric"> +0.06</td>
+                    </tr>
+                    <tr>
+                      <td>ABP</td>
+                      <td>ABACUS PROPERTY GROUP</td>
+                      <td class="numeric">$1.91</td>
+                      <td class="numeric">0.00</td>
+                    </tr>
+                    <tr>
+                      <td>ABY</td>
+                      <td>ADITYA BIRLA MINERALS LIMITED</td>
+                      <td class="numeric">$0.77</td>
+                      <td class="numeric"> +0.02</td>
+                    </tr>
+                    <tr>
+                      <td>ACR</td>
+                      <td>ACRUX LIMITED</td>
+                      <td class="numeric">$3.71</td>
+                      <td class="numeric"> +0.01</td>
+                    </tr>
+                    <tr>
+                      <td>ADU</td>
+                      <td>ADAMUS RESOURCES LIMITED</td>
+                      <td class="numeric">$0.72</td>
+                      <td class="numeric">0.00</td>
+                    </tr>
+                    <tr>
+                      <td>AGG</td>
+                      <td>ANGLOGOLD ASHANTI LIMITED</td>
+                      <td class="numeric">$7.81</td>
+                      <td class="numeric">-0.22</td>
+                    </tr>
+                    <tr>
+                      <td>AGK</td>
+                      <td>AGL ENERGY LIMITED</td>
+                      <td class="numeric">$13.82</td>
+                      <td class="numeric"> +0.02</td>
+                    </tr>
+                    <tr>
+                      <td>AGO</td>
+                      <td>ATLAS IRON LIMITED</td>
+                      <td class="numeric">$3.17</td>
+                      <td class="numeric">-0.02</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </section>
             </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-envelope-o fa-3x"></i></a>
-                </div>
-                <h4>2. Report a Bug</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
-              </div>
-            </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-random fa-3x"></i></a>
-                </div>
-                <h4>3. Submit a Ticket</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s..</p>
-              </div>
-            </div>
-            <!-- end dmbox -->
+            <!-- /content-panel -->
           </div>
-          <!--  /col-lg-12 -->
+          <!-- /col-lg-4 -->
         </div>
         <!-- /row -->
-        <div class="row content-panel">
-          <h2 class="centered">Most Asked Questions</h2>
-          <div class="col-md-10 col-md-offset-1 mt mb">
-            <div class="accordion" id="accordion2">
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseOne">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>How to purchase this template?
-                    </a>
-                </div>
-                <div id="collapseOne" class="accordion-body collapse in">
-                  <div class="accordion-inner">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseTwo">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>How can I install my server?
-                    </a>
-                </div>
-                <div id="collapseTwo" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseThree">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>How to change color schemes?
-                    </a>
-                </div>
-                <div id="collapseThree" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseFour">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>How to integrate Revolution Slider?
-                    </a>
-                </div>
-                <div id="collapseFour" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-group">
-                <div class="accordion-heading">
-                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="faq.html#collapseFive">
-                    <em class="glyphicon glyphicon-chevron-right icon-fixed-width"></em>How Can I get Support?
-                    </a>
-                </div>
-                <div id="collapseFive" class="accordion-body collapse">
-                  <div class="accordion-inner">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                      specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end accordion -->
-          </div>
-          <!-- col-md-10 -->
-        </div>
-        <!--  /row -->
       </section>
       <!-- /wrapper -->
     </section>
@@ -496,7 +419,7 @@
           -->
           Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="faq.html#" class="go-top">
+        <a href="responsive_table.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
@@ -512,7 +435,6 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-
 </body>
 
 </html>

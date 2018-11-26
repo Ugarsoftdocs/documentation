@@ -1,3 +1,17 @@
+<?php
+require_once('../model/User.php');
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
+
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row['name'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +44,7 @@
 </head>
 
 <body>
-  <section id="container" style = "overflow-y: hidden;">
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -262,8 +276,8 @@
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.html">Create project</a></li>
-              <li><a href="Joinproject.html">Join project</a></li>
+              <li><a href="Createproject.php">Create project</a></li>
+              <li><a href="Joinproject.php">Join project</a></li>
               <li><a href="Myproject.php">My Project</a></li>
             
             </ul>
@@ -284,100 +298,80 @@
         <!-- sidebar menu end-->
       </div>
     </aside>
- 
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content" style="height:770px !important;">
+    <section id="main-content">
       <section class="wrapper site-min-height">
-        <!-- page start-->
-        <div class="chat-room mt">
-          <aside class="mid-side">
-            <div class="chat-room-head">
-              <h3>Join Project</h3>
-              <form action="" class="pull-right position">
-                <input type="text" placeholder="Search" class="form-control search-btn ">
-              </form>
-            </div>
-            <div class="room-desk">
-              <h4 class="pull-left"></h4>
-    
-              <h3><i class="fa fa-angle-right"></i>Projects</h3>
-        <!-- BASIC FORM ELELEMNTS -->
-
-        <div class="room-desk">
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html">OMA CAB</a></h5>
-                  <p>We talk here about our dashboard. No support given.</p>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
+        <div class="row mt mb">
+          <div class="col-lg-12">
+            <h3><i class="fa fa-angle-right"></i>Files</h3>
+            <br>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-file fa-3x"></i></a>
                 </div>
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html">OGWUGO FOOD</a></h5>
-                  <p>Support chat for Dashio. Purchase ticket needed.</p>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                <h4>Project Documents</h4>
                 </div>
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html">OGWUGO APP</a></h5>
-                  <p>Technical support for our front-end. No customization.</p>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
+            </div>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-image fa-3x"></i></a>
                 </div>
-              </div>
-      </aside>
-          <!--team members side-->          
-          <aside class="right-side">
-            <div class="user-head">
-              <a href="#" class="chat-tools btn-theme"><i class="fa fa-cog"></i> </a>
-              <a href="#" class="chat-tools btn-theme03"><i class="fa fa-key"></i> </a>
+                <h4>Project Images</h4>
+                </div>
             </div>
-            <div class="invite-row">
-              <h4 class="pull-left">Team Members</h4>
-              <a href="#" class="btn btn-theme04 pull-right">+ Invite</a>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-video-camera fa-3x"></i></a>
+                </div>
+                <h4>Project Videos</h4>
+                </div>
             </div>
-            <ul class="chat-available-user">
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-02.jpg" width="32">
-                  Paul Brown
-                  <span class="text-muted">1h:02m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-05.jpg" width="32">
-                  David Duncan
-                  <span class="text-muted">1h:08m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-07.jpg" width="32">
-                  Laura Smith
-                  <span class="text-muted">1h:10m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-08.jpg" width="32">
-                  Julia Schultz
-                  <span class="text-muted">3h:00m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-01.jpg" width="32">
-                  Frank Arias
-                  <span class="text-muted">4h:22m</span>
-                  </a>
-              </li>
-            </ul>
-          </aside>
+            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-file fa-3x"></i></a>
+                </div>
+                <h4>Project Charts</h4>
+                </div>
+            </div>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-link fa-3x"></i></a>
+                </div>
+                <h4>Project Reference Links</h4>
+                </div>
+            </div>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
+              <div class="dmbox">
+                <div class="service-icon">
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-pencil fa-3x"></i></a>
+                </div>
+                <h4>Project Recommendations</h4>
+                </div>
+            </div>
+            <!-- end dmbox -->
+          </div>
+          <!--  /col-lg-12 -->
         </div>
-        <!-- page end-->
+        <!-- /row -->
+        
+            <!-- end accordion -->
+          </div>
+          <!-- col-md-10 -->
+        </div>
+        <!--  /row -->
       </section>
       <!-- /wrapper -->
     </section>
@@ -398,7 +392,7 @@
           -->
           Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
-        <a href="lobby.html#" class="go-top">
+        <a href="faq.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>

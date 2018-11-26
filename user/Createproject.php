@@ -1,3 +1,36 @@
+<?php
+require_once('../model/User.php');
+
+function getAuthenticatedUser(){
+  $profilename = new User();
+  
+  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
+
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row['name'];
+  }
+}
+
+?>
+
+           <?php
+           require_once('../model/Project.php');
+           require_once('../validation/Mpv.php');
+           
+           if($_SERVER['REQUEST_METHOD'] == 'POST') {
+           $name = $_POST['name'];
+           $project = $_POST['project'];
+           $message = $_POST['message'];
+           $valid = new Mpv;
+           $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
+           if(count($errors) == 0){
+           $myproject = new Project;
+           $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+           header("location:files.php");
+            }
+          }
+              ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -262,8 +295,8 @@
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.html">Create project</a></li>
-              <li><a href="Joinproject.html">Join project</a></li>
+              <li><a href="Createproject.php">Create project</a></li>
+              <li><a href="Joinproject.php">Join project</a></li>
               <li><a href="Myproject.php">My Project</a></li>
             
             </ul>
@@ -303,7 +336,6 @@
             </div>
             <div class="room-desk">
               <h4 class="pull-left"></h4>
-              <a href="contactform.html" class="pull-right btn btn-theme02">+ Create Project</a>
               <h3><i class="fa fa-angle-right"></i> Project Form</h3>
         <!-- BASIC FORM ELELEMNTS -->
 
@@ -311,22 +343,30 @@
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div id="message"></div>
             <form class="contact-form php-mail-form" role="form" action="" method="POST">
-                <div class="form-group">
-                    <input type="name" name="name" class="form-control" id="contact-name" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
-                    <div class="validate"></div>
-                  </div>
-                  <div class="form-group">
-                    <input type="email" name="email" class="form-control" id="contact-email" placeholder="Project" data-rule="email" data-msg="Please enter a valid email">
-                    <div class="validate"></div>
-                  </div>
-                  <div class="form-group">
-                    <textarea class="form-control" name="message" id="contact-message" placeholder="Descsription" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
-                    <div class="validate"></div>
-                  </div>
+
+              <div class="form-group">
+                <input type="text" name="name" class="form-control" id="contact-text" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
+                <span class="error" style="color: red;"><b><?php echo isset($errors['name']) ? $errors['name'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <input type="text" name="project" class="form-control" id="contact-text" placeholder="Project" data-rule="text" data-msg="Please enter a valid text">
+                <span class="error" style="color: red;"><b><?php echo isset($errors['project']) ? $errors['project'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" id="contact-message" placeholder="Description" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
+                <span class="error" style="color: red;"><b><?php echo isset($errors['message']) ? $errors['message'] : '' ?><b></span>
+                <div class="validate"></div>
+              </div>
               <div class="loading"></div>
               <div class="error-message"></div>
               <div class="sent-message">Your message has been sent. Thank you!</div>
-            </form>
+              <input type="hidden" name="form-type" value="login">
+              <div class="form-send">
+                <button type="submit" class="btn btn-large btn-primary">+ Create myProject</button>
+              </div>
+          </form>
           </div>
         </div>
       </aside>
