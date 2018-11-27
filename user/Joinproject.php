@@ -11,9 +11,20 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
+?>
+<?php
+require_once('../model/ProjectUser.php');
+function joinProjectAuthenticator(){
+    $projectquery= new Project_user;
+    $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
+      if($check != null){
+        $row = $check->fetch_assoc();
+        return $row['projects_id'];
+      }
+}
+$joinProAuthe = joinProjectAuthenticator();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -325,16 +336,19 @@ function getAuthenticatedUser(){
 
         <div class="room-desk">
                 <div class="room-box">
+                <form>
                   <h5 class="text-primary"><a href="chat_room.html">OMA CAB</a></h5>
-                  <p>We talk here about our dashboard. No support given.</p>
+                  <span><?php echo $joinProAuthe;?> </span>
                   <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                  <input type="hidden" name="form-type" value="view">
+                  <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                </form>
                 </div>
                 <div class="room-box">
                   <h5 class="text-primary"><a href="chat_room.html">OGWUGO FOOD</a></h5>
                   <p>Support chat for Dashio. Purchase ticket needed.</p>
                   <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                  <a href="#" class="pull-right btn btn-theme02">+ View</a>
                 </div>
                 <div class="room-box">
                   <h5 class="text-primary"><a href="chat_room.html">OGWUGO APP</a></h5>
