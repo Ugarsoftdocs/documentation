@@ -22,3 +22,4 @@ class LoginValidator extends BaseValidator{
     }
 
 }
+

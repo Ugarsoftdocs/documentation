@@ -29,10 +29,11 @@
         $useremail = $_POST['inputEmail'];
         $userpwd = md5($_POST['inputPwd']);
         $user->authenticateUser($useremail, $userpwd);
-      } else {
-        $logerror = '*Wrong Email or Password';      
-        
-      } 
+        $result = "";
+        if($result == null){
+          $logerror = "*Wrong E-mail or Password";
+        }
+      }       
     }
   }
 
