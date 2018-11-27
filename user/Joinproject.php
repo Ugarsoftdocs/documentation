@@ -12,14 +12,16 @@ function getAuthenticatedUser(){
   }
 }
 ?>
+
+
 <?php
 require_once('../model/ProjectUser.php');
 function joinProjectAuthenticator(){
     $projectquery= new Project_user;
     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
       if($check != null){
-        $row = $check->fetch_assoc();
-        return $row['projects_id'];
+
+        return "You are Already a Member"
       }
 }
 $joinProAuthe = joinProjectAuthenticator();
