@@ -57,7 +57,7 @@ function getAuthenticatedUser(){
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="img/apple-touch-icon.png" rel= "apple-touch-icon">
 
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,7 +86,7 @@ function getAuthenticatedUser(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>     
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -275,7 +275,7 @@ function getAuthenticatedUser(){
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php"">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -297,7 +297,7 @@ function getAuthenticatedUser(){
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -321,7 +321,7 @@ function getAuthenticatedUser(){
             </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>

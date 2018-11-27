@@ -54,7 +54,7 @@ class Model extends Database{
         $columns = trim($columns, ',');
         $values = trim($values, ',');
         $sql = "insert into $table($columns) values ($values)";
-        //echo $sql;
+        
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -77,17 +77,18 @@ class Model extends Database{
         $this->conn->close();
     }
 
-    public function updateRecord($update,$where,$table){
+    public function updateRecord($update, $condition, $table){
        $col="";
        $val="";
        foreach($update as $key => $value){
-           $col .= $key."="."'$value'";
-       }
-       $sql =  "UPDATE $table SET $col WHERE $where";
+           $col .= $key."="."'$value' ,";
+        }
+        $col =  trim($col, ',');
+       $sql =  "UPDATE $table SET $col $condition";
        $result = $this->conn->query($sql);
-
+       
        if($result){
-        echo "successful";
+        //echo "successful";
        }else{
         echo $this->conn->error;
 
@@ -107,8 +108,8 @@ class Model extends Database{
         $col = trim($col, ', '); 
     }
 
-     $sql = "SELECT $col FROM $table $condition ";
-    // var_dump($sql); 
+     $sql = "SELECT $col FROM $table $condition";
+     
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;

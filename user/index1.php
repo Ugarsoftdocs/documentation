@@ -1,17 +1,18 @@
 <?php
 require_once('../model/User.php');
+$user = new User();
+$user->isAuthenticated();
 
+      
 function getAuthenticatedUser(){
   $profilename = new User();
   
-  $result = $profilename->query(['name'], " where users_id = ".$_SESSION['userId']);
-
+  $result = $profilename->query(['name'], " where users_id =".$_SESSION['userId']);
   if($result != null){
     $row = $result->fetch_assoc();
     return $row['name'];
   }
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@ function getAuthenticatedUser(){
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-</head>
+</head>wind
 
 <body>
   <section id="container">
@@ -58,7 +59,7 @@ function getAuthenticatedUser(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -247,7 +248,7 @@ function getAuthenticatedUser(){
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="../Login/log_out.php">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -263,16 +264,16 @@ function getAuthenticatedUser(){
           <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
           <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a class="active" href="index1.php">
+            <a>
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
-              </a>
+            </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;">
@@ -285,19 +286,19 @@ function getAuthenticatedUser(){
               <li><a href="Myproject.php">My Project</a></li>           
             </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
+          <li>
+            <a href="">
               <i class="fa fa-gear"></i>
               <span>Setting</span>
             </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
+          <li>
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
           </li>
-        </ul>
+        <ul>
         <!-- sidebar menu end-->
       </div>
     </aside>

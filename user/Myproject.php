@@ -12,12 +12,10 @@ function getAuthenticatedUser(){
   }
 }
 
-?>
-
-           <?php
-           require_once('../model/Project.php');
-           require_once('../validation/Mpv.php');
+require_once('../model/Project.php');
+require_once('../validation/Mpv.php');
            
+<<<<<<< HEAD
            if($_SERVER['REQUEST_METHOD'] == 'POST') {
            $name = $_POST['name'];
            $project = $_POST['project'];
@@ -31,6 +29,20 @@ function getAuthenticatedUser(){
             }
           }
               ?>
+=======
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $name = $_POST['name'];
+  $project = $_POST['project'];
+  $message = $_POST['message'];
+  $valid = new Mpv;
+  $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
+  if(count($errors) == 0){
+    $myproject = new Project;
+    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+  }
+}
+?>
+>>>>>>> b52a35085e3932bcf93633df68c2b8678dc0adc0
 <!DOCTYPE html>
 <html lang="en">
 
@@ -63,9 +75,9 @@ function getAuthenticatedUser(){
 </head>
 
 <body>
-  <section id="container" >
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS
+        TOP BAR CONTENT & NOTIFICATIONS 
         *********************************************************************************************************************************************************** -->
     <!--header start-->
     <header class="header black-bg">
@@ -73,7 +85,7 @@ function getAuthenticatedUser(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -262,7 +274,7 @@ function getAuthenticatedUser(){
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php"">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -284,7 +296,7 @@ function getAuthenticatedUser(){
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -308,7 +320,7 @@ function getAuthenticatedUser(){
             </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -323,7 +335,7 @@ function getAuthenticatedUser(){
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content" style="height:1100px !important;">
+    <section id="main-content" style="height:788px !important; overflow-y: hidden;">
       <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="chat-room mt">
@@ -336,38 +348,14 @@ function getAuthenticatedUser(){
             </div>
             <div class="room-desk">
               <h4 class="pull-left"></h4>
-              <h3><i class="fa fa-angle-right"></i> myProject Form</h3>
+              <h3><i class="fa fa-angle-right"></i> myProjects</h3>
         <!-- BASIC FORM ELELEMNTS -->
 
 
         <div class="row mt">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div id="message"></div>
-            <form class="contact-form php-mail-form" role="form" action="" method="POST">
-
-              <div class="form-group">
-                <input type="text" name="name" class="form-control" id="contact-text" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
-                <span class="error" style="color: red;"><b><?php echo isset($errors['name']) ? $errors['name'] : '' ?><b></span>
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" name="project" class="form-control" id="contact-text" placeholder="Project" data-rule="text" data-msg="Please enter a valid text">
-                <span class="error" style="color: red;"><b><?php echo isset($errors['project']) ? $errors['project'] : '' ?><b></span>
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" id="contact-message" placeholder="Descsription" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
-                <span class="error" style="color: red;"><b><?php echo isset($errors['message']) ? $errors['message'] : '' ?><b></span>
-                <div class="validate"></div>
-              </div>
-              <div class="loading"></div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-              <input type="hidden" name="form-type" value="login">
-              <div class="form-send">
-                <button type="submit" class="btn btn-large btn-primary">+ Create myProject</button>
-              </div>
-          </form>
+            
 
 
               <div class="room-desk">
@@ -375,22 +363,22 @@ function getAuthenticatedUser(){
                       <h5 class="text-primary"><a href="chat_room.html">myProject 1</a></h5>
                       <p>We talk here about our dashboard. No support given.</p>
                       <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
                     </div>
                     <div class="room-box">
                       <h5 class="text-primary"><a href="chat_room.html">myProject 2</a></h5>
                       <p>Support chat for Dashio. Purchase ticket needed.</p>
                       <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
                     </div>
                     <div class="room-box">
                       <h5 class="text-primary"><a href="chat_room.html">myProject 3</a></h5>
                       <p>Technical support for our front-end. No customization.</p>
                       <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ join</a>
+                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
                     </div>
-                  </div>
-            </form>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
