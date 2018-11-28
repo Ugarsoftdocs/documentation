@@ -13,36 +13,18 @@ function getAuthenticatedUser(){
 }
 
 require_once('../model/Project.php');
-require_once('../validation/Mpv.php');
-           
-<<<<<<< HEAD
-           if($_SERVER['REQUEST_METHOD'] == 'POST') {
-           $name = $_POST['name'];
-           $project = $_POST['project'];
-           $message = $_POST['message'];
-           $valid = new Mpv;
-           $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
-           if(count($errors) == 0){
-           $myproject = new Project;
-           $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
-           header("location:myfiles.php");
-            }
-          }
-              ?>
-=======
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $name = $_POST['name'];
-  $project = $_POST['project'];
-  $message = $_POST['message'];
-  $valid = new Mpv;
-  $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
-  if(count($errors) == 0){
-    $myproject = new Project;
-    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
-  }
+function joinProject(){
+  $joinquery= new Project;
+  $check = $joinquery->query(['name', 'project', 'description'], " order by id desc limit 1");
+  if($check != null){
+    $row = $check->fetch_assoc();
+    return $row;
+  } 
 }
+$joinPro = joinProject();
+
+
 ?>
->>>>>>> b52a35085e3932bcf93633df68c2b8678dc0adc0
 <!DOCTYPE html>
 <html lang="en">
 
@@ -360,9 +342,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
               <div class="room-desk">
                     <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 1</a></h5>
-                      <p>We talk here about our dashboard. No support given.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                      <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
+                      <span><?php echo $joinPro["description"] ?></span>
+                      <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                       <a href="#" class="pull-right btn btn-theme02">+ view</a>
                     </div>
                     <div class="room-box">

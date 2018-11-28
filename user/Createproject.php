@@ -356,7 +356,6 @@ function getAuthenticatedUser(){
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div id="message"></div>
             <form class="contact-form php-mail-form" role="form" action="" method="POST">
-
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="contact-text" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" >
                 <span class="error" style="color: red;"><b><?php echo isset($errors['name']) ? $errors['name'] : '' ?><b></span>

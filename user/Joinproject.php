@@ -11,10 +11,21 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
-?>
+
+require_once('../model/Project.php');
+function joinProject(){
+  $joinquery= new Project;
+  $check = $joinquery->query(['name', 'project', 'description'], " order by id desc limit 1");
+  if($check != null){
+    $row = $check->fetch_assoc();
+    return $row;
+  } 
+}
+$joinPro = joinProject();
 
 
-<?php
+
+
 require_once('../model/ProjectUser.php');
 function joinProjectAuthenticator(){
     $projectquery= new Project_user;
@@ -25,8 +36,8 @@ function joinProjectAuthenticator(){
       }
 }
 $joinProAuthe = joinProjectAuthenticator();
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -332,30 +343,26 @@ $joinProAuthe = joinProjectAuthenticator();
             </div>
             <div class="room-desk">
               <h4 class="pull-left"></h4>
-    
-              <h3><i class="fa fa-angle-right"></i>Projects</h3>
-        <!-- BASIC FORM ELELEMNTS -->
 
-        <div class="room-desk">
+              <h3><i class="fa fa-angle-right"></iProjects</h3>
+              
+            <div class="room-desk">
                 <div class="room-box">
-                <form>
-                  <h5 class="text-primary"><a href="chat_room.html">OMA CAB</a></h5>
-                  <span><?php echo $joinProAuthe;?> </span>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                  <input type="hidden" name="form-type" value="view">
+                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
+                  <span><?php echo $joinPro["description"] ?></span>
+                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                   <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
-                </form>
                 </div>
                 <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html">OGWUGO FOOD</a></h5>
-                  <p>Support chat for Dashio. Purchase ticket needed.</p>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
+                  <span><?php echo $joinPro["description"] ?></span>
+                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
                   <a href="#" class="pull-right btn btn-theme02">+ View</a>
                 </div>
                 <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html">OGWUGO APP</a></h5>
-                  <p>Technical support for our front-end. No customization.</p>
-                  <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
+                  <span><?php echo $joinPro["description"] ?></span>
+                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
                   <a href="#" class="pull-right btn btn-theme02">+ join</a>
                 </div>
               </div>

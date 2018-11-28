@@ -10,4 +10,3 @@ function myFunction() {
         document.getElementById("eye").className = "fa fa-eye-slash";
     }
 }
- 
