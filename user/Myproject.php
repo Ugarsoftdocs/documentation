@@ -11,21 +11,45 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
-
+?>
+<?php
 require_once('../model/Project.php');
-require_once('../validation/Mpv.php');
-           
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $name = $_POST['name'];
-  $project = $_POST['project'];
-  $message = $_POST['message'];
-  $valid = new Mpv;
-  $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
-  if(count($errors) == 0){
-    $myproject = new Project;
-    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
-  }
+require_once('../model/User.php');
+$projects = [];
+
+function getProjects(){
+    global $projects;
+    $project= new Project;
+    $table1 = 'projects';
+    $table2 = 'project_user';
+    $query = [ "$table1.id", "$table1.name", "$table1.description", "$table1.project", "$table2.users_id"];
+    $result = $project->query($query, " left join $table2 on $table2.projects_id = $table1.id");
+      if($result != null){
+        while($row = $result->fetch_assoc()){
+          $projects[] = $row;
+        }
+        
+      }
+     //var_dump($projects);
+     //header('location:files.php');
+    // die('here');
 }
+getProjects();
+?>
+
+<?php
+// require_once('../model/ProjectUser.php');
+// function joinProjectAuthenticator(){
+//     $projectquery= new Project_user;
+//     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
+//       if($check != null){
+
+//         return "You are Already a Member";
+//       }
+// }
+
+// $joinProAuthe = joinProjectAuthenticator();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,10 +82,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   ======================================================= -->
 </head>
 
-<body>
+<body onload="append()">
   <section id="container">
     <!-- **********************************************************************************************************************************************************
-        TOP BAR CONTENT & NOTIFICATIONS 
+        TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
     <header class="header black-bg">
@@ -69,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
+      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -258,7 +282,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="../login/Log_out.php"">Logout</a></li>
+          <li><a class="logout" href="login.html">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -276,11 +300,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
           <li class="mt">
             <a class="active" href="index1.php">
               <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
+              <span id = "j">Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="contactform.php">
+            <a href="calender.html">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -304,7 +328,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             </a>
           </li>
           <li class="sub-menu">
-            <a href="../login/Log_out.php">
+            <a href="javascript:;">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -319,52 +343,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content" style="height:788px !important; overflow-y: hidden;">
+    <section id="main-content" style="height:100% !important;">
       <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="chat-room mt">
           <aside class="mid-side">
             <div class="chat-room-head">
-              <h3>My Project</h3>
+              <h3>myProject</h3>
               <form action="" class="pull-right position">
                 <input type="text" placeholder="Search" class="form-control search-btn ">
               </form>
             </div>
             <div class="room-desk">
               <h4 class="pull-left"></h4>
-              <h3><i class="fa fa-angle-right"></i> myProjects</h3>
+    
+              <h3><i class="fa fa-angle-right"></i>myProjects</h3>
         <!-- BASIC FORM ELELEMNTS -->
 
+        <div class="room-desk">
+              <?php foreach($projects as $key => $project){?>
+                <div class="room-box" >
+                  <form action="files.php">
+                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p><?php echo $project["description"]?></p>
+                    <input type="hidden" name="form-type" value="view">
+                    <?php if($project['users_id'] == $_SESSION['userId']){?>
+                    <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                    <?php }?>
 
-        <div class="row mt">
-          <div class="col-lg-12 col-md-12 col-sm-12">
-            <div id="message"></div>
+                  </form>
+                </div>
+              <?php }?>
             
-
-
-              <div class="room-desk">
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 1</a></h5>
-                      <p>We talk here about our dashboard. No support given.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 2</a></h5>
-                      <p>Support chat for Dashio. Purchase ticket needed.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 3</a></h5>
-                      <p>Technical support for our front-end. No customization.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-              </div>
-            </div>
-          </div>
         </div>
+
       </aside>
           <!--team members side-->          
           <aside class="right-side">
@@ -452,7 +465,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-
+  <script src="../assets/js/tl.js"></script>
 </body>
 
 </html>

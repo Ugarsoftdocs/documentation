@@ -30,7 +30,7 @@ function getProjects(){
         }
         
       }
-      // var_dump($projects);
+     //var_dump($projects);
 }
 getProjects();
 ?>
@@ -81,7 +81,7 @@ getProjects();
 </head>
 
 <body onload="append()">
-  <section id="container" style = "overflow-y: hidden;">
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -341,7 +341,7 @@ getProjects();
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content" style="height:770px !important;">
+    <section id="main-content" style="height:100% !important;">
       <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="chat-room mt">
@@ -361,13 +361,13 @@ getProjects();
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
-                  <form>
+                  <form action="files.php">
                     <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
-                    <p id ="b"><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                    <p id="c"><?php echo $project["description"]?></p>
+                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p><?php echo $project["description"]?></p>
                     <input type="hidden" name="form-type" value="view">
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
-                      <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                    <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
                     <?php }else{?>
                       <input type ="submit" value ="+ Join" class="pull-right btn btn-theme02">
                     <?php }?>
