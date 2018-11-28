@@ -280,7 +280,7 @@ $authUser = getAuthenticatedUser();
         <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
           <h5 class="centered"><?php echo $authUser["name"] ?></h5>
           <li class="mt">
-            <a>
+            <a href="index1.php">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
             </a>

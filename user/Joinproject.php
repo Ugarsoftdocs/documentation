@@ -11,34 +11,9 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
-<<<<<<< HEAD
 
 require_once('../model/Project.php');
-function joinProject(){
-  $joinquery= new Project;
-  $check = $joinquery->query(['name', 'project', 'description'], " order by id desc limit 1");
-  if($check != null){
-    $row = $check->fetch_assoc();
-    return $row;
-  } 
-}
-$joinPro = joinProject();
-
-
-
-
-require_once('../model/ProjectUser.php');
-function joinProjectAuthenticator(){
-    $projectquery= new Project_user;
-    $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
-      if($check != null){
-=======
-?>
-<?php
-require_once('../model/Project.php');
-require_once('../model/User.php');
 $projects = [];
->>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
 
 function getProjects(){
     global $projects;
@@ -53,28 +28,8 @@ function getProjects(){
         }
         
       }
-      // var_dump($projects);
 }
-<<<<<<< HEAD
-$joinProAuthe = joinProjectAuthenticator();
-=======
 getProjects();
-?>
-
-<?php
-// require_once('../model/ProjectUser.php');
-// function joinProjectAuthenticator(){
-//     $projectquery= new Project_user;
-//     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
-//       if($check != null){
-
-//         return "You are Already a Member";
-//       }
-// }
-
-// $joinProAuthe = joinProjectAuthenticator();
-
->>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +74,7 @@ getProjects();
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -330,7 +285,7 @@ getProjects();
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -354,7 +309,7 @@ getProjects();
             </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -369,7 +324,7 @@ getProjects();
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content" style="height:770px !important;">
+    <section id="main-content" style="height:100% !important;">
       <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="chat-room mt">
@@ -383,38 +338,13 @@ getProjects();
             <div class="room-desk">
               <h4 class="pull-left"></h4>
 
-<<<<<<< HEAD
-              <h3><i class="fa fa-angle-right"></iProjects</h3>
-              
-            <div class="room-desk">
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
-                  <span><?php echo $joinPro["description"] ?></span>
-                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                  <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
-                </div>
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
-                  <span><?php echo $joinPro["description"] ?></span>
-                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ View</a>
-                </div>
-                <div class="room-box">
-                  <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
-                  <span><?php echo $joinPro["description"] ?></span>
-                  <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                  <a href="#" class="pull-right btn btn-theme02">+ join</a>
-                </div>
-              </div>
-=======
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
                   <form>
-                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
-                    <p id ="b"><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                    <p id="c"><?php echo $project["description"]?></p>
-                    <input type="hidden" name="form-type" value="view">
+                    <h5 class="text-primary"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p><?php echo $project["description"]?></p>
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
                       <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
                     <?php }else{?>
@@ -426,7 +356,6 @@ getProjects();
             
         </div>
 
->>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
       </aside>
           <!--team members side-->          
           <aside class="right-side">
