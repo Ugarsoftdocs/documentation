@@ -28,6 +28,10 @@ function getProjects(){
         }
         
       }
+<<<<<<< HEAD
+=======
+     //var_dump($projects);
+>>>>>>> a92a0e599db29b6105ab36df46436ff8e11885de
 }
 getProjects();
 ?>
@@ -64,7 +68,7 @@ getProjects();
 </head>
 
 <body onload="append()">
-  <section id="container" style = "overflow-y: hidden;">
+  <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -341,12 +345,13 @@ getProjects();
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
-                  <form>
-                    <h5 class="text-primary"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
-                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                  <form action="files.php">
+                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
+                    <input type="hidden" name="form-type" value="view">
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
-                      <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                    <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
                     <?php }else{?>
                       <input type ="submit" value ="+ Join" class="pull-right btn btn-theme02">
                     <?php }?>
