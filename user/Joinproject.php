@@ -11,6 +11,7 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
+<<<<<<< HEAD
 
 require_once('../model/Project.php');
 function joinProject(){
@@ -31,11 +32,49 @@ function joinProjectAuthenticator(){
     $projectquery= new Project_user;
     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
       if($check != null){
+=======
+?>
+<?php
+require_once('../model/Project.php');
+require_once('../model/User.php');
+$projects = [];
+>>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
 
-        return "You are Already a Member";
+function getProjects(){
+    global $projects;
+    $project= new Project;
+    $table1 = 'projects';
+    $table2 = 'project_user';
+    $query = [ "$table1.id", "$table1.name", "$table1.description", "$table1.project", "$table2.users_id"];
+    $result = $project->query($query, " left join $table2 on $table2.projects_id = $table1.id");
+      if($result != null){
+        while($row = $result->fetch_assoc()){
+          $projects[] = $row;
+        }
+        
       }
+      // var_dump($projects);
 }
+<<<<<<< HEAD
 $joinProAuthe = joinProjectAuthenticator();
+=======
+getProjects();
+?>
+
+<?php
+// require_once('../model/ProjectUser.php');
+// function joinProjectAuthenticator(){
+//     $projectquery= new Project_user;
+//     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
+//       if($check != null){
+
+//         return "You are Already a Member";
+//       }
+// }
+
+// $joinProAuthe = joinProjectAuthenticator();
+
+>>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +108,7 @@ $joinProAuthe = joinProjectAuthenticator();
   ======================================================= -->
 </head>
 
-<body>
+<body onload="append()">
   <section id="container" style = "overflow-y: hidden;">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
@@ -80,7 +119,7 @@ $joinProAuthe = joinProjectAuthenticator();
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
+      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -269,7 +308,7 @@ $joinProAuthe = joinProjectAuthenticator();
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="../login/Log_out.php"">Logout</a></li>
+          <li><a class="logout" href="login.html">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -287,11 +326,11 @@ $joinProAuthe = joinProjectAuthenticator();
           <li class="mt">
             <a class="active" href="index1.php">
               <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
+              <span id = "j">Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="contactform.php">
+            <a href="calender.html">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -315,7 +354,7 @@ $joinProAuthe = joinProjectAuthenticator();
             </a>
           </li>
           <li class="sub-menu">
-            <a href="../login/Log_out.php">
+            <a href="javascript:;">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -344,6 +383,7 @@ $joinProAuthe = joinProjectAuthenticator();
             <div class="room-desk">
               <h4 class="pull-left"></h4>
 
+<<<<<<< HEAD
               <h3><i class="fa fa-angle-right"></iProjects</h3>
               
             <div class="room-desk">
@@ -366,6 +406,27 @@ $joinProAuthe = joinProjectAuthenticator();
                   <a href="#" class="pull-right btn btn-theme02">+ join</a>
                 </div>
               </div>
+=======
+        <div class="room-desk">
+              <?php foreach($projects as $key => $project){?>
+                <div class="room-box" >
+                  <form>
+                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                    <p id ="b"><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p id="c"><?php echo $project["description"]?></p>
+                    <input type="hidden" name="form-type" value="view">
+                    <?php if($project['users_id'] == $_SESSION['userId']){?>
+                      <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                    <?php }else{?>
+                      <input type ="submit" value ="+ Join" class="pull-right btn btn-theme02">
+                    <?php }?>
+                  </form>
+                </div>
+              <?php }?>
+            
+        </div>
+
+>>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
       </aside>
           <!--team members side-->          
           <aside class="right-side">
@@ -453,7 +514,7 @@ $joinProAuthe = joinProjectAuthenticator();
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-
+  <script src="../assets/js/tl.js"></script>
 </body>
 
 </html>

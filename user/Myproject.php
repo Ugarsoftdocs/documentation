@@ -13,6 +13,7 @@ function getAuthenticatedUser(){
 }
 
 require_once('../model/Project.php');
+<<<<<<< HEAD
 function joinProject(){
   $joinquery= new Project;
   $check = $joinquery->query(['name', 'project', 'description'], " order by id desc limit 1");
@@ -20,6 +21,20 @@ function joinProject(){
     $row = $check->fetch_assoc();
     return $row;
   } 
+=======
+require_once('../validation/Mpv.php');
+           
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $name = $_POST['name'];
+  $project = $_POST['project'];
+  $message = $_POST['message'];
+  $valid = new Mpv;
+  $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
+  if(count($errors) == 0){
+    $myproject = new Project;
+    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+  }
+>>>>>>> eb336c7038fd951a4f1f9e929c02b01fee35dcc1
 }
 $joinPro = joinProject();
 
