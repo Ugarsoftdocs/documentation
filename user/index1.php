@@ -46,7 +46,7 @@ function getAuthenticatedUser(){
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
-</head>wind
+</head>
 
 <body>
   <section id="container">

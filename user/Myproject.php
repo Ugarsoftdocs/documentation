@@ -15,21 +15,6 @@ function getAuthenticatedUser(){
 require_once('../model/Project.php');
 require_once('../validation/Mpv.php');
            
-<<<<<<< HEAD
-           if($_SERVER['REQUEST_METHOD'] == 'POST') {
-           $name = $_POST['name'];
-           $project = $_POST['project'];
-           $message = $_POST['message'];
-           $valid = new Mpv;
-           $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
-           if(count($errors) == 0){
-           $myproject = new Project;
-           $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
-           header("location:myfiles.php");
-            }
-          }
-              ?>
-=======
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_POST['name'];
   $project = $_POST['project'];
@@ -42,7 +27,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   }
 }
 ?>
->>>>>>> b52a35085e3932bcf93633df68c2b8678dc0adc0
 <!DOCTYPE html>
 <html lang="en">
 

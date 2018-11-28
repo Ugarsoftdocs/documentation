@@ -46,12 +46,13 @@ class User extends Model{
     }
 
     public function authenticateUser($email, $password, $location = 'user/index1.php'){
-        $result = $this->query(['users_id'], " where email = '$email' AND password = '$password'");
+        $result = $this->query(['users_id','name'], " where email = '$email' AND password = '$password'");
         
         if($result != null){
            $row = $result->fetch_assoc();
            
             $_SESSION['userId'] = $row['users_id'];
+            $_SESSION['name'] = $row['name'];
           header("Location: $location");
         }
     }
@@ -63,5 +64,4 @@ class User extends Model{
         }
     }
 
-    
 }

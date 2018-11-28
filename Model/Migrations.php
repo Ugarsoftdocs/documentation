@@ -1,9 +1,9 @@
 <?php
 
-require_once('projectUser.php');
+require_once('project.php');
 
 
-$Pu = new Project_user;
+$Pu = new Project;
 
 
 $Pu ->create();

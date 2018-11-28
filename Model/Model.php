@@ -109,7 +109,7 @@ class Model extends Database{
     }
 
      $sql = "SELECT $col FROM $table $condition";
-     
+  
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;
