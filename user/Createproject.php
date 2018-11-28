@@ -12,38 +12,35 @@ function getAuthenticatedUser(){
   }
 }
 
-?>
 
-           <?php
-           require_once('../model/Project.php');
-           require_once('../validation/Mpv.php');
-           require_once('../model/projectUser.php');
+require_once('../model/Project.php');
+require_once('../validation/Mpv.php');
+require_once('../model/projectUser.php');
            
-           if($_SERVER['REQUEST_METHOD'] == 'POST') {
-           $cool = [];
-           $name = $_POST['name'];
-           $project = $_POST['project'];
-           $message = $_POST['message'];
-           $valid = new Mpv;
-           $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
-              if(count($errors) == 0){
-                 $myproject = new Project;
-                 $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
-                   if ($myproject) {           
-                   $check = $myproject->query(['id'], " order by id desc limit 1");
-                    if($check != null){
-                    $row = $check->fetch_assoc();
-                    $cool = $row['id'];
-         
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $cool = [];
+  $name = $_POST['name'];
+  $project = $_POST['project'];
+  $message = $_POST['message'];
+  $valid = new Mpv;
+  $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
+  if(count($errors) == 0){
+    $myproject = new Project;
+    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+    if ($myproject) {           
+      $check = $myproject->query(['id'], " order by id desc limit 1");
+      if($check != null){
+        $row = $check->fetch_assoc();
+        $cool = $row['id'];
 
-           $projectuser = new Project_user;
-           $projectuser->insert(['projects_id' => "$cool", 'users_id' => $_SESSION['userId']]);
-           header("location:joinproject.php");
-          }
-        }      
-    }
+        $projectuser = new Project_user;
+        $projectuser->insert(['projects_id' => "$cool", 'users_id' => $_SESSION['userId']]);
+        header("location:joinproject.php");
+      }
+    }      
+  }
 }
-              ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -342,7 +339,7 @@ function getAuthenticatedUser(){
         <div class="chat-room mt">
           <aside class="mid-side">
             <div class="chat-room-head">
-              <h3>Create Project</h3>
+              <h3>createProject</h3>
               <form action="" class="pull-right position">
                 <input type="text" placeholder="Search" class="form-control search-btn ">
               </form>
@@ -365,12 +362,12 @@ function getAuthenticatedUser(){
            </form>
               <div class="form-group">
                 <input type="text" name="project" class="form-control" id="contact-text" placeholder="Project" data-rule="text" data-msg="Please enter a valid text">
-                <span class="error" style="color: red;"><b><?php echo isset($errors['project']) ? $errors['project'] : '' ?><b></span>
+                <span class="error" style="color: red;"><?php echo isset($errors['project']) ? $errors['project'] : '' ?></span>
                 <div class="validate"></div>
               </div>
               <div class="form-group">
                 <textarea class="form-control" name="message" id="contact-message" placeholder="Description" rows="5" data-rule="required" data-msg="Please write something for us"></textarea>
-                <span class="error" style="color: red;"><b><?php echo isset($errors['message']) ? $errors['message'] : '' ?><b></span>
+                <span class="error" style="color: red;"><?php echo isset($errors['message']) ? $errors['message'] : '' ?></span>
                 <div class="validate"></div>
               </div>
               <div class="loading"></div>
@@ -436,14 +433,14 @@ function getAuthenticatedUser(){
         <!-- page end-->
       </section>
       <!-- /wrapper -->
-    </section>
+    </section><br>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
     <!--footer start-->
     <footer class="site-footer">
       <div class="text-center">
         <p>
-          &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
+          &copy; Copyrights <strong>UgarSoft</strong>. All Rights Reserved
         </p>
         <div class="credits">
           <!--
@@ -452,7 +449,6 @@ function getAuthenticatedUser(){
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
         </div>
         <a href="lobby.html#" class="go-top">
           <i class="fa fa-angle-up"></i>

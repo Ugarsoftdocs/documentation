@@ -331,7 +331,7 @@ getProjects();
         <div class="chat-room mt">
           <aside class="mid-side">
             <div class="chat-room-head">
-              <h3>Join Project</h3>
+              <h3>All Projects</h3>
               <form action="" class="pull-right position">
                 <input type="text" placeholder="Search" class="form-control search-btn ">
               </form>
@@ -344,7 +344,7 @@ getProjects();
                 <div class="room-box" >
                   <form action="files.php">
                     <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
-                    <p><span class="text-muted">Admin :</span><?php echo $project["name"]?><span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p><span class="text-muted">Admin : </span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
                     <input type="hidden" name="form-type" value="view">
                     <?php if($project['users_id'] == $_SESSION['userId']){?>

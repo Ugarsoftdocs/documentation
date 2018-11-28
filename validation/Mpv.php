@@ -15,9 +15,9 @@ class Mpv extends BaseValidator{
 
         if($this->isEmpty($request['name'])) $this->errors['name'] = '*Name field is required';
 
-        if($this->isEmpty($request['project'])) $this->errors['project'] = '*project field is required';
+        if($this->isEmpty($request['project'])) $this->errors['project'] = '*Project field is required';
 
-        if($this->isEmpty($request['message'])) $this->errors['message'] = '*description field is required';
+        if($this->isEmpty($request['message'])) $this->errors['message'] = '*Description field is required';
 
         return $this->errors;
 
