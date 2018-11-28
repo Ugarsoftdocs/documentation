@@ -11,10 +11,8 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
-?>
-<?php
+
 require_once('../model/Project.php');
-require_once('../model/User.php');
 $projects = [];
 
 function getProjects(){
@@ -30,31 +28,11 @@ function getProjects(){
         }
         
       }
-     //var_dump($projects);
-     //header('location:files.php');
-    // die('here');
 }
-<<<<<<< HEAD
-
-=======
 getProjects();
 ?>
 
-<?php
-// require_once('../model/ProjectUser.php');
-// function joinProjectAuthenticator(){
-//     $projectquery= new Project_user;
-//     $check = $projectquery->query(['projects_id'], " where users_id = ".$_SESSION['userId']);
-//       if($check != null){
 
-//         return "You are Already a Member";
-//       }
-// }
-
-// $joinProAuthe = joinProjectAuthenticator();
->>>>>>> a92a0e599db29b6105ab36df46436ff8e11885de
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,7 +75,7 @@ getProjects();
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -286,7 +264,7 @@ getProjects();
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -302,13 +280,13 @@ getProjects();
           <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
           <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a class="active" href="index1.php">
+            <a href="index1.php">
               <i class="fa fa-dashboard"></i>
-              <span id = "j">Dashboard</span>
+              <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -319,9 +297,9 @@ getProjects();
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.php">Create project</a></li>
-              <li><a href="Joinproject.php">Join project</a></li>
-              <li><a href="Myproject.php">My Project</a></li>
+              <li><a href="Createproject.php">Create Project</a></li>
+              <li><a href="Joinproject.php">All Projects</a></li>
+              <li><a href="Myproject.php">My Projects</a></li>
             
             </ul>
           </li>
@@ -332,7 +310,7 @@ getProjects();
             </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -380,33 +358,6 @@ getProjects();
                 </div>
               <?php }?>
             
-<<<<<<< HEAD
-
-
-              <div class="room-desk">
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html"><?php echo $joinPro["project"] ?></a></h5>
-                      <span><?php echo $joinPro["description"] ?></span>
-                      <p><span class="text-muted">Admin :</span> <?php echo $joinPro["name"] ?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 2</a></h5>
-                      <p>Support chat for Dashio. Purchase ticket needed.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 44 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-                    <div class="room-box">
-                      <h5 class="text-primary"><a href="chat_room.html">myProject 3</a></h5>
-                      <p>Technical support for our front-end. No customization.</p>
-                      <p><span class="text-muted">Admin :</span> Sam Soffes | <span class="text-muted">Member :</span> 22 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
-                      <a href="#" class="pull-right btn btn-theme02">+ view</a>
-                    </div>
-              </div>
-            </div>
-          </div>
-=======
->>>>>>> a92a0e599db29b6105ab36df46436ff8e11885de
         </div>
 
       </aside>

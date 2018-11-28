@@ -28,10 +28,7 @@ function getProjects(){
         }
         
       }
-<<<<<<< HEAD
-=======
-     //var_dump($projects);
->>>>>>> a92a0e599db29b6105ab36df46436ff8e11885de
+
 }
 getProjects();
 ?>
@@ -267,7 +264,7 @@ getProjects();
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -283,9 +280,9 @@ getProjects();
           <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
           <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a class="active" href="index1.php">
+            <a href="index1.php">
               <i class="fa fa-dashboard"></i>
-              <span id = "j">Dashboard</span>
+              <span>Dashboard</span>
             </a>
           </li>
           <li>
@@ -300,9 +297,9 @@ getProjects();
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.php">Create project</a></li>
-              <li><a href="Joinproject.php">Join project</a></li>
-              <li><a href="Myproject.php">My Project</a></li>
+              <li><a href="Createproject.php">Create Project</a></li>
+              <li><a href="Joinproject.php">All Projects</a></li>
+              <li><a href="Myproject.php">My Projects</a></li>
             
             </ul>
           </li>
