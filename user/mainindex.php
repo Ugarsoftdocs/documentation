@@ -1,6 +1,5 @@
 <?php
 require_once('authentication.php');
-//main content code
 require_once('myProjectcode.php');
 require_once('topbar.php');
 require_once('sidebar.php');
