@@ -11,7 +11,22 @@ function getAuthenticatedUser(){
     return $row['name'];
   }
 }
+
+require_once('../model/Project.php');
+
+function getDetails(){
+  $details = new Project();
+  
+  $result = $details->query(['name', 'project', 'description'], " order by id desc limit 1");
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row;
+  }
+}
+$getdetails = getDetails();
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +56,7 @@ function getAuthenticatedUser(){
     Author: TemplateMag.com
     License: https://templatemag.com/license/
   ======================================================= -->
+ 
 </head>
 
 <body>
@@ -54,7 +70,7 @@ function getAuthenticatedUser(){
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="" class="logo"><b>U<span style="text-transform: lowercase; color: white;">gar</span><span>S</span><span style="text-transform: lowercase;">oft</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
@@ -243,7 +259,7 @@ function getAuthenticatedUser(){
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../login/Log_out.php">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -259,13 +275,13 @@ function getAuthenticatedUser(){
           <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
           <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
-            <a class="active" href="index1.php">
+            <a href="index1.php">
               <i class="fa fa-dashboard"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="calender.html">
+            <a href="contactform.php">
               <i class="fa fa-user"></i>
               <span>Profile</span>
               </a>
@@ -276,9 +292,9 @@ function getAuthenticatedUser(){
               <span>Projects</span>
             </a>
             <ul class="sub">
-              <li><a href="Createproject.php">Create project</a></li>
-              <li><a href="Joinproject.php">Join project</a></li>
-              <li><a href="Myproject.php">My Project</a></li>
+              <li><a href="Createproject.php">Create Project</a></li>
+              <li><a href="Joinproject.php">All Projects</a></li>
+              <li><a href="Myproject.php">My Projects</a></li>
             
             </ul>
           </li>
@@ -289,7 +305,7 @@ function getAuthenticatedUser(){
             </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;">
+            <a href="../login/Log_out.php">
               <i class="fa fa-sign-out"></i>
               <span>Logout</span>
             </a>
@@ -298,80 +314,156 @@ function getAuthenticatedUser(){
         <!-- sidebar menu end-->
       </div>
     </aside>
+ 
     <!--sidebar end-->
     <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
     <!--main content start-->
-    <section id="main-content">
+    <section id="main-content" style="height:730px !important; overflow: hidden;">
       <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="chat-room mt">
+          <aside class="mid-side" style="width: 15%;">
+            <div class="chat-room-head">
+              <h3>All Projects</h3>
+            </div>
+            <div class="room-desk">
+              <h4 class="pull-left"></h4>
+      
+        <div class="room-desk">
+                <div class="room-box" >
+                  <form action="">
+                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $getdetails["project"]?></a></h5>
+                    <p><span class="text-muted">Admin : </span><?php echo $getdetails["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
+                    <p><?php echo $getdetails["description"]?></p>     
+                  </form>
+                </div>
+        </div>
+                <div class="invite-row">
+              <h4 class="pull-left">Recent Activities</h4>
+            </div>
+            <ul class="chat-available-user">
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-02.jpg" width="32">
+                  Paul Brown
+                  <span class="text-muted">1h:02m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-05.jpg" width="32">
+                  David Duncan
+                  <span class="text-muted">1h:08m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-07.jpg" width="32">
+                  Laura Smith
+                  <span class="text-muted">1h:10m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-08.jpg" width="32">
+                  Julia Schultz
+                  <span class="text-muted">3h:00m</span>
+                  </a>
+              </li>
+              <li>
+                <a href="chat_room.html">
+                  <img class="img-circle" src="img/friends/fr-01.jpg" width="32">
+                  Frank Arias
+                  <span class="text-muted">4h:22m</span>
+                  </a>
+              </li>
+            </ul>
+            
+        
+        </div>
+        </aside>
+
+      
+          <!--team members side-->          
+          <aside class="right-side">
+            <div class="user-head">
+              <a href="#" class="chat-tools btn-theme"><i class="fa fa-cog"></i> </a>
+              <a href="#" class="chat-tools btn-theme03"><i class="fa fa-key"></i> </a>
+              <a href="#" class="chat-tools btn-theme03"><i class="fa fa-file"></i> </a>        
+              <a href="#" class="chat-tools btn-theme03"><i class="fa fa-user-plus"></i> </a>           
+            </div>
         <div class="row mt mb">
           <div class="col-lg-12">
-            <h3><i class="fa fa-angle-right"></i>myFiles</h3>
+            <div class="container">
+            <h3><i class="fa fa-angle-right"></i> Files</h3>
+            </div>
             <br>
             <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="filetable.php"><i class="dm-icon fa fa-file fa-3x"></i></a>
-                </div>
-                <h4>myProject Documents</h4>
-                </div>
-            </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="filetble.php"><i class="dm-icon fa fa-image fa-3x"></i></a>
-                </div>
-                <h4>myProject Images</h4>
-                </div>
-            </div>
-            <!-- end dmbox -->
-            <div class="col-lg-4 col-md-4 col-sm-12">
-              <div class="dmbox">
-                <div class="service-icon">
-                  <a class="" href="filetble.php"><i class="dm-icon fa fa-video-camera fa-3x"></i></a>
-                </div>
-                <h4>myProject Videos</h4>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
-              <div class="dmbox">
-                <div class="service-icon">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
+                <div class="service-icon" >
+                  <span></span>
                   <a class="" href="faq.html#"><i class="dm-icon fa fa-file fa-3x"></i></a>
                 </div>
-                <h4>myProject Charts</h4>
+                <h4>Project Documents</h4>
+                </div>
+            </div>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
+                <div class="service-icon">
+                  <span></span>
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-image fa-3x"></i></a>
+                </div>
+                <h4>Project Images</h4>
+                </div>
+            </div>
+            <!-- end dmbox -->
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
+                <div class="service-icon">
+                  <span></span>
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-video-camera fa-3x"></i></a>
+                </div>
+                <h4>Project Videos</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
+                <div class="service-icon">
+                  <span></span>
+                  <a class="" href="faq.html#"><i class="dm-icon fa fa-file fa-3x"></i></a>
+                </div>
+                <h4>Project Notes</h4>
                 </div>
             </div>
             <!-- end dmbox -->
             <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
-              <div class="dmbox">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
+                  <span></span>
                   <a class="" href="faq.html#"><i class="dm-icon fa fa-link fa-3x"></i></a>
                 </div>
-                <h4>myProject Reference Links</h4>
+                <h4>Project Links</h4>
                 </div>
             </div>
             <!-- end dmbox -->
             <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
-              <div class="dmbox">
+              <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
+                  <span></span>
                   <a class="" href="faq.html#"><i class="dm-icon fa fa-pencil fa-3x"></i></a>
                 </div>
-                <h4>myProject Recommendations</h4>
+                <h4>Recommendations</h4>
                 </div>
             </div>
-            <!-- end dmbox -->
           </div>
-          <!--  /col-lg-12 -->
         </div>
-        <!-- /row -->
-        
-            <!-- end accordion -->
-          </div>
-          <!-- col-md-10 -->
+            
+          </aside>
         </div>
-        <!--  /row -->
+        <!-- page end-->
       </section>
       <!-- /wrapper -->
     </section>
@@ -390,9 +482,9 @@ function getAuthenticatedUser(){
             Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
             Licensing information: https://templatemag.com/license/
           -->
-          Created with Dashio template by <a href="https://templatemag.com/">TemplateMag</a>
+  
         </div>
-        <a href="faq.html#" class="go-top">
+        <a href="lobby.html#" class="go-top">
           <i class="fa fa-angle-up"></i>
           </a>
       </div>
@@ -408,7 +500,7 @@ function getAuthenticatedUser(){
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-
+  <script src="../assets/js/tl.js"></script>
 </body>
 
 </html>
