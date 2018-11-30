@@ -124,11 +124,13 @@
                                     </div>
                                 </div>                             
                             </div>
-                        </div>                        
+                        </div>   
+
 <script src="datatable.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">  </script>
 <script src=https://code.jquery.com/jquery-3.3.1.js></script>
 <script src=https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js></script>
 <script src=https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js></script>
+
 </body>
 </html>

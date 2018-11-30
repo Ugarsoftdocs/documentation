@@ -21,4 +21,5 @@ $(document).ready(function() {
     } );
 
     $('#demo').html('<input type="submit" value = "+Upload"/>');
+    $('#demoUsers').html('<input type="submit" value = "+Invite"/>');
 } );
