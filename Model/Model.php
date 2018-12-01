@@ -58,6 +58,7 @@ class Model extends Database{
         $result = $this->conn->query($sql);
         return $result;
     }
+    
     public function deleteRecord($condition, $table){
 
         $sql = "delete from $table $condition";
@@ -133,16 +134,9 @@ class Model extends Database{
         }
     }
 
-    public function alterTableDrop($data, $table){
-        $table_alterdrop = "";
-
-        foreach($data as $key => $value){
-            $table_alterdrop .= $key. ',';
-        }
-
-        $table_alterdrop = trim($table_alterdrop, ',');
-
-        $sql = "alter table $table drop $table_alterdrop";
+    public function alterTableDrop($condition, $table){
+        
+        $sql = "alter table $table $condition";
 
         $result = $this->conn->query($sql);
 

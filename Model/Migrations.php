@@ -6,6 +6,6 @@ require_once('Notification.php');
 $change = new Notification;
 
 
-$change->alterdrop('seen');
+$change->dropcolumn( " drop type " );
 
 
