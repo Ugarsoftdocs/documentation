@@ -26,6 +26,9 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
   <!--datatable css-->
   <link href = "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <link href = "https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css">

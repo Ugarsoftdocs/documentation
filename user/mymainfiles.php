@@ -108,7 +108,7 @@
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
                   <span></span>
-                  <a><i class="dm-icon fa fa-video-camera fa-3x" data-toggle="modal" data-target="#myModal"></i></a>
+                  <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#myModal"></i></a>
                 <?php require_once('datatable/modaltable.php')?> 
                 </div>
                 <h4>Project Videos</h4>
@@ -118,7 +118,8 @@
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
                   <span></span>
-                  <a class="" href="faq.html#"><i class="dm-icon fa fa-file fa-3x"></i></a>
+                  <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#modals"></i></a>
+                <?php require_once('modalNote.php')?>
                 </div>
                 <h4>Project Notes</h4>
                 </div>
@@ -145,7 +146,7 @@
             </div>
           </div>
         </div>
-            
+</div>          
           </aside>
         </div>
         <!-- page end-->
