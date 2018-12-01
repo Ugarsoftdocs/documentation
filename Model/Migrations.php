@@ -1,10 +1,11 @@
 <?php
-
-require_once('project.php');
-
-
-$Pu = new Project;
+require_once('Notification.php');
 
 
-$Pu ->create();
+
+$change = new Notification;
+
+
+$change->alterdrop('seen');
+
 
