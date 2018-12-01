@@ -30,28 +30,28 @@ class Project_user extends Model{
         return $this->insertIntoTable($data, $this->table);
     }
 
-    public function delete($where){
-        return $this->deleteRecord($where, $this->table);
+    public function delete($condition){
+        return $this->deleteRecord($condition, $this->table);
     }
     
-    public function update($update,$where){
-        return $this->updateRecord($update, $where, $this->table);
+    public function update($data, $condition){
+        return $this->updateRecord($data, $condition, $this->table);
     }
 
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
     }
 
-    public function authenticateUser($email, $password, $location = 'user/index1.php'){
-        $result = $this->query(['users_id'], " where email = '$email' AND password = '$password'");
+    public function addcolumn($data, $condition){
+        $this->alterTable($data, $condition, $this->table);
+    }
 
-        if($result != null){
-           $row = $result->fetch_assoc();
-           
-            $_SESSION['userId'] = $row['users_id'];
-          header("Location: $location");
-        }
-       
+    public function dropcolumn($data){
+        $this->alterTableDrop($data, $this->table);
+    }
+
+    public function droptable(){
+        $this->tableDrop($this->table);
     }
 
 

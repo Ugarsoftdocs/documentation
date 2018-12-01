@@ -58,13 +58,9 @@ class Model extends Database{
         $result = $this->conn->query($sql);
         return $result;
     }
-    public function deleteRecord($where, $table){
-        $col="";
-        foreach($where as $key => $value){
-        $col .= $key."="."'$value'";
-        }
+    public function deleteRecord($condition, $table){
 
-        $sql = "delete from $table where $col";
+        $sql = "delete from $table $condition";
         $result = $this->conn->query($sql);
 
 
@@ -77,10 +73,10 @@ class Model extends Database{
         $this->conn->close();
     }
 
-    public function updateRecord($update, $condition, $table){
+    public function updateRecord($data, $condition, $table){
        $col="";
        $val="";
-       foreach($update as $key => $value){
+       foreach($data as $key => $value){
            $col .= $key."="."'$value' ,";
         }
         $col =  trim($col, ',');
@@ -114,6 +110,70 @@ class Model extends Database{
     
      return $result->num_rows > 0 ? $result : null;
     }
+
+
+    public function alterTable($data, $condition, $table){
+        $table_alter = "";
+
+        foreach($data as $key => $value){
+            $table_alter .= $key.' ' . $value . ',';
+        }
+
+        $table_alter = trim($table_alter, ',');
+
+        $sql = "alter table $table add $table_alter $condition";
+
+        $result = $this->conn->query($sql);
+
+        if($result){
+            echo "successful";
+        }else{
+            echo $this->conn->error;
+
+        }
+    }
+
+    public function alterTableDrop($data, $table){
+        $table_alterdrop = "";
+
+        foreach($data as $key => $value){
+            $table_alterdrop .= $key. ',';
+        }
+
+        $table_alterdrop = trim($table_alterdrop, ',');
+
+        $sql = "alter table $table drop $table_alterdrop";
+
+        $result = $this->conn->query($sql);
+
+        if($result){
+            echo "successful";
+        }else{
+            echo $this->conn->error;
+
+        }
+
+    }
+
+    public function tableDrop($table){
+    
+        $sql = "drop table $table";
+    
+        $result = $this->conn->query($sql);
+    
+        if($result){
+            echo "successful";
+        }else{
+            echo $this->conn->error;
+    
+        }
+        
+
+
+    }
+        
+
+
     
 }
 

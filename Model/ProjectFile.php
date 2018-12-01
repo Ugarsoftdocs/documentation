@@ -32,16 +32,28 @@ class ProjectFile extends Model{
         $this->insertIntoTable($data, $this->table);
     }
 
-    public function delete($where){
-        $this->deleteRecord($where, $this->table);
+    public function delete($condition){
+        $this->deleteRecord($condition, $this->table);
     }
     
-    public function update($update,$where){
-        $this->updateRecord($update, $where, $this->table);
+    public function update($data, $condition){
+        $this->updateRecord($data, $condition, $this->table);
     }
     
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
+    }
+
+    public function addcolumn($data, $condition){
+        $this->alterTable($data, $condition, $this->table);
+    }
+
+    public function dropcolumn($data){
+        $this->alterTableDrop($data, $this->table);
+    }
+
+    public function droptable(){
+        $this->tableDrop($this->table);
     }
 
 }
