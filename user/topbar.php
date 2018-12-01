@@ -14,6 +14,10 @@
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel= "apple-touch-icon">
 
+    <link rel="stylesheet" type="text/css" media="screen" href="datatable/datatable.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
   <!-- Bootstrap core CSS -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!--external css-->
@@ -22,6 +26,9 @@
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
   <!--datatable css-->
   <link href = "https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
   <link href = "https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.dataTables.min.css">

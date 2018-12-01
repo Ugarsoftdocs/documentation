@@ -17,7 +17,7 @@
 </head>
 <body>
  <div  id="about" >
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-left:45%;margin-top:20px;" >Login</button>
+ <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#myModal"></i></a>
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">    
                                   <!-- Modal content-->

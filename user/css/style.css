@@ -1626,8 +1626,17 @@ PANELS CONFIGURATIONS
 }
 
 /* Grid Showcase*/
+thead input {
+    width: 100%;
+}
 
-	margin-bottom: 15px;
+#demo{
+    padding-left:500px;
+}
+
+#clickableAwesomeFont{
+    cursor: pointer;
+    outline:none;
 }
 
 .show-grid [class^=col-] {
@@ -2288,7 +2297,7 @@ ul.my-friends li .friends-pic {
 	-webkit-font-smoothing: antialiased;
 }
 
-.dm-icon:active,
+
 
 
 

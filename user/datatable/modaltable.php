@@ -19,94 +19,94 @@
         </thead>
         <tbody>
             <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
+                <td style="text-align:left; !important; padding-left:6px">Tiger Nixon</td>
+                <td style="text-align:left; !important; padding-left:6px">System Architect</td>
+                <td style="text-align:left; !important; padding-left:6px">Edinburgh</td>
+                <td style="text-align:left; !important; padding-left:6px">61</td>
             </tr>
             <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
+                <td style="text-align:left; !important; padding-left:6px">Garrett Winters</td>
+                <td style="text-align:left; !important; padding-left:6px">Accountant</td>
+                <td style="text-align:left; !important; padding-left:6px">Tokyo</td>
+                <td style="text-align:left; !important; padding-left:6px">63</td>
             </tr>
             <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
+                <td style="text-align:left; !important; padding-left:6px">Ashton Cox</td>
+                <td style="text-align:left; !important; padding-left:6px">Junior Technical Author</td>
+                <td style="text-align:left; !important; padding-left:6px">San Francisco</td>
+                <td style="text-align:left; !important; padding-left:6px">66</td>
             </tr>
             <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
+                <td style="text-align:left; !important; padding-left:6px">Cedric Kelly</td>
+                <td style="text-align:left; !important; padding-left:6px">Senior Javascript Developer</td>
+                <td style="text-align:left; !important; padding-left:6px">Edinburgh</td>
+                <td style="text-align:left; !important; padding-left:6px">22</td>
             </tr>
             <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
+                <td style="text-align:left; !important; padding-left:6px">Airi Satou</td>
+                <td style="text-align:left; !important; padding-left:6px">Accountant</td>
+                <td style="text-align:left; !important; padding-left:6px">Tokyo</td>
+                <td style="text-align:left; !important; padding-left:6px">33</td>
             </tr>
             <tr>
-                <td>Brielle Williamson</td>
-                <td>Integration Specialist</td>
-                <td>New York</td>
-                <td>61</td>
+                <td style="text-align:left; !important; padding-left:6px">Brielle Williamson</td>
+                <td style="text-align:left; !important; padding-left:6px">Integration Specialist</td>
+                <td style="text-align:left; !important; padding-left:6px">New York</td>
+                <td style="text-align:left; !important; padding-left:6px">61</td>
             </tr>
             <tr>
-                <td>Herrod Chandler</td>
-                <td>Sales Assistant</td>
-                <td>San Francisco</td>
-                <td>59</td>
+                <td style="text-align:left; !important; padding-left:6px">Herrod Chandler</td>
+                <td style="text-align:left; !important; padding-left:6px">Sales Assistant</td>
+                <td style="text-align:left; !important; padding-left:6px">San Francisco</td>
+                <td style="text-align:left; !important; padding-left:6px">59</td>
             </tr>
             <tr>
-                <td>Rhona Davidson</td>
-                <td>Integration Specialist</td>
-                <td>Tokyo</td>
-                <td>55</td>
+                <td style="text-align:left; !important; padding-left:6px">Rhona Davidson</td>
+                <td style="text-align:left; !important; padding-left:6px">Integration Specialist</td>
+                <td style="text-align:left; !important; padding-left:6px">Tokyo</td>
+                <td style="text-align:left; !important; padding-left:6px">55</td>
             </tr>
             <tr>
-                <td>Colleen Hurst</td>
-                <td>Javascript Developer</td>
-                <td>San Francisco</td>
-                <td>39</td>
+                <td style="text-align:left; !important; padding-left:6px">Colleen Hurst</td>
+                <td style="text-align:left; !important; padding-left:6px">Javascript Developer</td>
+                <td style="text-align:left; !important; padding-left:6px">San Francisco</td>
+                <td style="text-align:left; !important; padding-left:6px">39</td>
             </tr>
             <tr>
-                <td>Sonya Frost</td>
-                <td>Software Engineer</td>
-                <td>Edinburgh</td>
-                <td>23</td>
+                <td style="text-align:left; !important; padding-left:6px">Sonya Frost</td>
+                <td style="text-align:left; !important; padding-left:6px">Software Engineer</td>
+                <td style="text-align:left; !important; padding-left:6px">Edinburgh</td>
+                <td style="text-align:left; !important; padding-left:6px">23</td>
             </tr>
             <tr>
-                <td>Jena Gaines</td>
-                <td>Office Manager</td>
-                <td>London</td>
-                <td>30</td>
+                <td style="text-align:left; !important; padding-left:6px">Jena Gaines</td>
+                <td style="text-align:left; !important; padding-left:6px">Office Manager</td>
+                <td style="text-align:left; !important; padding-left:6px">London</td>
+                <td style="text-align:left; !important; padding-left:6px">30</td>
             </tr>
             <tr>
-                <td>Quinn Flynn</td>
-                <td>Support Lead</td>
-                <td>Edinburgh</td>
-                <td>22</td>
+                <td style="text-align:left; !important; padding-left:6px">Quinn Flynn</td>
+                <td style="text-align:left; !important; padding-left:6px">Support Lead</td>
+                <td style="text-align:left; !important; padding-left:6px">Edinburgh</td>
+                <td style="text-align:left; !important; padding-left:6px">22</td>
             </tr>
             <tr>
-                <td>Charde Marshall</td>
-                <td>Regional Director</td>
-                <td>San Francisco</td>
-                <td>36</td>
+                <td style="text-align:left; !important; padding-left:6px">Charde Marshall</td>
+                <td style="text-align:left; !important; padding-left:6px">Regional Director</td>
+                <td style="text-align:left; !important; padding-left:6px">San Francisco</td>
+                <td style="text-align:left; !important; padding-left:6px">36</td>
             </tr>
             <tr>
-                <td>Haley Kennedy</td>
-                <td>Senior Marketing Designer</td>
-                <td>London</td>
-                <td>43</td>
+                <td style="text-align:left; !important; padding-left:6px">Haley Kennedy</td>
+                <td style="text-align:left; !important; padding-left:6px">Senior Marketing Designer</td>
+                <td style="text-align:left; !important; padding-left:6px">London</td>
+                <td style="text-align:left; !important; padding-left:6px">43</td>
             </tr>
             <tr>
-                <td>Tatyana Fitzpatrick</td>
-                <td>Regional Director</td>
-                <td>London</td>
-                <td>19</td>
+                <td style="text-align:left; !important; padding-left:6px">Tatyana Fitzpatrick</td>
+                <td style="text-align:left; !important; padding-left:6px">Regional Director</td>
+                <td style="text-align:left; !important; padding-left:6px">London</td>
+                <td style="text-align:left; !important; padding-left:6px">19</td>
             </tr>
         </tbody>
         <tfoot>
@@ -124,11 +124,5 @@
                                     </div>
                                 </div>                             
                             </div>
-                        </div>                        
-<script src="datatable.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">  </script>
-<script src=https://code.jquery.com/jquery-3.3.1.js></script>
-<script src=https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js></script>
-<script src=https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js></script>
-</body>
-</html>
+                        </div>   
+
