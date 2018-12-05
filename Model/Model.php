@@ -111,6 +111,23 @@ class Model extends Database{
      return $result->num_rows > 0 ? $result : null;
     }
 
+    public function getAllRecord($columne = [], $table){ 
+        $col = '';
+         foreach($columne as $key => $value){         
+           $col .= $value. ', ';
+           }
+       if(strlen($col) == 0){
+           $col = '*';
+       }else{
+           $col = trim($col, ', '); 
+       }
+   
+        $sql = "SELECT $col FROM $table";
+     
+        $result = $this->conn->query($sql);
+       
+        return $result->num_rows > 0 ? $result : null;
+       }
 
     public function alterTable($data, $condition, $table){
         $table_alter = "";
@@ -133,16 +150,10 @@ class Model extends Database{
         }
     }
 
-    public function alterTableDrop($data, $table){
-        $table_alterdrop = "";
+    public function alterTableDrop($condition, $table){
 
-        foreach($data as $key => $value){
-            $table_alterdrop .= $key. ',';
-        }
 
-        $table_alterdrop = trim($table_alterdrop, ',');
-
-        $sql = "alter table $table drop $table_alterdrop";
+        $sql = "alter table $table drop $condition";
 
         $result = $this->conn->query($sql);
 

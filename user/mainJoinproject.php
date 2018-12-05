@@ -32,7 +32,7 @@
                     <?php }else{?>
                       <input type ="submit" value ="+ Join" class="pull-right btn btn-theme02">
                     <?php }?>
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" >+ Invite</button>
+                    <button type="button" id ="button" onclick= "fetchdata(<?php echo $project['id'];?>)" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" >+ Invite</button>
                     <?php require_once('Notification/inviteUsers.php')?> 
                   </form>
                 </div>

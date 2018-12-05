@@ -44,13 +44,15 @@ class User extends Model{
     public function query($columns, $condition){
         return $this->getSingleRecord($columns, $condition, $this->table);
     }
-
+    public function queryAll($columne){
+        return $this->getAllRecord($columne, $this->table);
+    }
     public function addcolumn($data, $condition){
         $this->alterTable($data, $condition, $this->table);
     }
 
-    public function dropcolumn($data){
-        $this->alterTableDrop($data, $this->table);
+    public function dropcolumn($condition){
+        $this->alterTableDrop($condition, $this->table);
     }
 
     public function droptable(){

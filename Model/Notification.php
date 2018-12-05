@@ -48,8 +48,8 @@ class Notification extends Model{
         $this->alterTable($data, $condition, $this->table);
     }
 
-    public function dropcolumn($data){
-        $this->alterTableDrop($data, $this->table);
+    public function dropcolumn($condition){
+        $this->alterTableDrop($condition, $this->table);
     }
 
     public function droptable(){
