@@ -1,11 +1,11 @@
 <?php
-require_once('Notification.php');
+require_once('ProjectFile.php');
 
 
 
-$change = new Notification;
+$change = new ProjectFile;
 
 
-$change->dropcolumn( " drop type " );
+$change->addcolumn(['project_file_type' => 'VARCHAR'], " after project_note_id");
 
 

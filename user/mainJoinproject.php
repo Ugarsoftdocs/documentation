@@ -20,23 +20,27 @@
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
-                  <form action="myfiles.php">
-                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                  <form action="myfiles.php" method="POST">
+                    <h5 class="text-primary"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
                     <p><span class="text-muted">Admin : </span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
-                  
-                    <input type="hidden" name="form-type" value="view">
+                    <input type ="hidden" value ="<?php echo $project["id"]?>" name="id">
                     
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
-                    <input type ="submit" value ="+ View" class="pull-right btn btn-theme02">
+                    <input type ="submit" value ="+ View" name="form-type" class="pull-right btn btn-theme02" style = "margin-left: 6px;">
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" style = "margin-left: 6px;">+ Invite</button>
+                    <?php require_once('Notification/inviteUsers.php')?>
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" >+ Delete</button>
+                    <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }else{?>
-                      <input type ="submit" value ="+ Join" class="pull-right btn btn-theme02">
+                      <input type ="submit" value ="+ Join" name="form-type" class="pull-right btn btn-theme02">
                     <?php }?>
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" >+ Invite</button>
-                    <?php require_once('Notification/inviteUsers.php')?> 
+
                   </form>
+
                 </div>
               <?php }?>
+     
             
         </div>
 

@@ -3,7 +3,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/projectUser.php');
 $names = [];
 
-function getNames(){
+function getNamesDelete(){
     global $names;
     $name= new ProjectUser;
     $table1 = 'project_user';
@@ -16,9 +16,9 @@ function getNames(){
         }
         
       }
- 
+
 }
-getNames();
+getNamesDelete();
 ?>
 <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">    
@@ -26,7 +26,7 @@ getNames();
                                 <div class="modal-content">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                       <h4 class="modal-title">Invite users to my Project</h4>
+                                       <h4 class="modal-title">Delete Users from your Project</h4>
                                     </div>
                                     <div class="modal-body">
                                         <p id = "demoUsers"></p>
@@ -42,7 +42,7 @@ getNames();
                 <td><input type="checkbox"><span style="margin-left:10px"><?php echo $name["name"]?></span></td>
             </tr>    
         </tbody> 
-        <?php }?>       
+        <?php }?>        
     </table>
                                     </div>
                                     <div class="modal-footer">

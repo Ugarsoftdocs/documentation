@@ -1,7 +1,7 @@
 <?php
 require_once('Model.php');
 
-class Project_user extends Model{
+class ProjectUser extends Model{
     public $table;
     public $columns;
 

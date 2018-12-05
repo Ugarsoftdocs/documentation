@@ -8,17 +8,17 @@
         <div class="chat-room mt">
           <aside class="mid-side" style="width: 15%;">
             <div class="chat-room-head">
-              <h3>All Projects</h3>
+              <h3><?php echo $getdetails["project"]?></h3>
             </div>
             <div class="room-desk">
               <h4 class="pull-left"></h4>
       
         <div class="room-desk">
                 <div class="room-box" >
-                  <form action="">
-                    <h5 class="text-primary" id="a"><a href="chat_room.html"><?php echo $getdetails["project"]?></a></h5>
-                    <p><span class="text-muted">Admin : </span><?php echo $getdetails["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
-                    <p><?php echo $getdetails["description"]?></p>     
+                  <form action="" method="POST">
+                    <p><span class="text-muted">Admin : </span><?php echo $getdetails["name"]?></p>
+                    <p><?php echo $getdetails["description"]?></p>
+                    <input type ="hidden" value ="<?php echo $getdetails["id"]?>" name="id">     
                   </form>
                 </div>
         </div>
@@ -116,11 +116,14 @@
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
+                <form  role="form" action="" method="POST">
                 <div class="service-icon">
                   <span></span>
                   <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#modals"></i></a>
+                  <input type ="hidden" value ="<?php echo $getdetails["id"]?>" name="id">
                 <?php require_once('modalNote.php')?>
                 </div>
+                </form>
                 <h4>Project Notes</h4>
                 </div>
             </div>
