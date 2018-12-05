@@ -1,11 +1,11 @@
 <?php
-require_once('ProjectFile.php');
+require_once('ProjectNote.php');
 
 
 
-$change = new ProjectFile;
+$change = new ProjectNote;
 
 
-$change->addcolumn(['project_file_type' => 'VARCHAR'], " after project_note_id");
+$change->create();
 
 

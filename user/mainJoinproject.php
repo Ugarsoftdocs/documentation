@@ -27,13 +27,17 @@
                     <input type ="hidden" value ="<?php echo $project["id"]?>" name="id">
                     
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
-                    <input type ="submit" value ="+ View" name="form-type" class="pull-right btn btn-theme02" style = "margin-left: 6px;">
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" style = "margin-left: 6px;">+ Invite</button>
+                    <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" style = "margin-left: 6px;">
+                       View
+                    </a>
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
                     <?php require_once('Notification/inviteUsers.php')?>
-                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" >+ Delete</button>
+                    <button type="button" data-toggle="modal" data-target="#myModal" class="pull-right btn btn-theme02" > Delete</button>
                     <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }else{?>
-                      <input type ="submit" value ="+ Join" name="form-type" class="pull-right btn btn-theme02">
+                      <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type">
+                       Join
+                    </a>
                     <?php }?>
 
                   </form>

@@ -3,13 +3,16 @@ require_once('../model/ProjectNote.php');
 
 
    
-/**if($_SERVER['REQUEST_METHOD'] == 'POST'){/
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $id = $_POST['id'];
+    
     $name = $_POST['name'];
     $message = $_POST['message'];
-    $note = new ProjectNote();
-    $note->insert(['title'=>"$name", 'description'=>"$message", 'projects_id' => "$id", 'users_id' => $_SESSION['userId']]);
-} **/
+    
+    $note = new ProjectNote;
+    $result = $note->insert(['title'=>"$name", 'description'=>"$message", 'project_id' => $id, 'users_id' => $_SESSION['userId']]);
+
+} 
 
    
    
@@ -36,16 +39,17 @@ require_once('../model/ProjectNote.php');
                            </div>
                           </div>
                           <div class="col-sm-6">
-                          <form  role="form" action="" method="POST">
+                          <form action="" method="POST">
                             <div style="border:2px solid silver !important; height: 493px !important; overflow-y: scroll;">
                                 <input type="text" name="name" class="form-control" id="contact-name">
-                                <textarea name="message" rows="50" cols="28"></textarea>  
+                                <textarea name="message" rows="50" cols="28"></textarea>
+                                <input type ="hidden" value ="<?php echo $getdetails["id"]?>" name="id">  
                             </div>
                           </div>
                         </div>
                     </div>
                     <div class="modal-footer">  
-                     <button type="submit" class="btn btn-default" style="background-color: #7b7bc5; color: white;">Save</button>
+                     <button type="submit" name="form-type" class="btn btn-default" style="background-color: #7b7bc5; color: white;">Save</button> 
                     </form>
                      <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #7b7bc5; color: white;"><b>Close<b></button>
                     </div>
