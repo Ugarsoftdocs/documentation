@@ -15,6 +15,7 @@ class ProjectNote extends Model{
         $this->table  = 'project_notes';
         $this->columns = [
             'id' => 'int auto_increment primary key',
+            'users_id' => 'int NOT NULL',
             'project_id' => 'int NOT NULL',
             'title' => 'VARCHAR(150) NOT NULL',
             'description' => 'VARCHAR(300)',

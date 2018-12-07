@@ -34,7 +34,9 @@
                     <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" >+ Delete</button>
                     <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }else{?>
-                      <input type ="submit" value ="+ Join" name="form-type" class="pull-right btn btn-theme02">
+                      <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type">
+                       Join
+                    </a>
                     <?php }?>
                   </form>
 
