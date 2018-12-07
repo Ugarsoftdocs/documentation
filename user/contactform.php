@@ -350,12 +350,12 @@ $authUser = getAuthenticatedUser();
                 <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="facebook_link" class="form-control" id="link" placeholder="My Facebook URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["facebook_link"]?>">
+                <input type="text" name="facebook_link" class="form-control" id="link" placeholder="my Facebook URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["facebook_link"]?>">
                 <span class="error" style="color: red;"><?php echo isset($errors['facebook_link']) ? $errors['facebook_link'] : '' ?> </span>  
               <div class="validate"></div>
               </div>
               <div class="form-group">
-                <input type="text" name="twitter_link" class="form-control" id="link" placeholder="My Twitter URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["twitter_link"] ?>">
+                <input type="text" name="twitter_link" class="form-control" id="link" placeholder="my Twitter URL" data-rule="minlen:1" data-msg="Please enter a password" value="<?php echo $authUser["twitter_link"] ?>">
                 <span class="error" style="color: red;"><?php echo isset($errors['twitter_link']) ? $errors['twitter_link'] : '' ?> </span>  
                 <div class="validate"></div>
               </div><br>

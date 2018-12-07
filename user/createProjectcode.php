@@ -2,7 +2,7 @@
 
 require_once('../model/Project.php');
 require_once('../validation/Mpv.php');
-require_once('../model/projectUser.php');
+require_once('../model/ProjectUser.php');
            
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $cool = [];
@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $check->fetch_assoc();
         $cool = $row['id'];
 
-        $projectuser = new Project_user;
+        $projectuser = new ProjectUser;
         $projectuser->insert(['projects_id' => "$cool", 'users_id' => $_SESSION['userId']]);
         header("location:joinproject.php");
       }

@@ -1,11 +1,11 @@
 <?php
-require_once('Notification.php');
+require_once('Invites.php');
 
 
 
-$change = new Notification;
+$change = new Invites;
 
 
-$change->addcolumn(['desc' => 'VARCHAR(300)'], 'after description');                                       
+$change->create();  
 
 
