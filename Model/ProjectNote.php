@@ -30,15 +30,15 @@ class ProjectNote extends Model{
     }
 
     public function insert($data){
-        $this->insertIntoTable($data, $this->table);
+       return $this->insertIntoTable($data, $this->table);
     }
 
     public function delete($condition){
-        $this->deleteRecord($condition, $this->table);
+        return $this->deleteRecord($condition, $this->table);
     }
     
     public function update($data, $condition){
-        $this->updateRecord($data, $condition, $this->table);
+        return $this->updateRecord($data, $condition, $this->table);
     }
     
     public function query($columns, $condition){

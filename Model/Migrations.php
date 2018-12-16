@@ -1,11 +1,11 @@
 <?php
-require_once('ProjectNote.php');
+require_once('HistoryLog.php');
 
 
 
-$change = new ProjectNote;
+$change = new HistoryLog;
 
 
-$change->create();
+$change->dropcolumn( "drop created_by" );
 
 

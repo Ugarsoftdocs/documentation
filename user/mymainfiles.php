@@ -1,8 +1,10 @@
  <!-- **********************************************************************************************************************************************************
         MAIN CONTENT
         *********************************************************************************************************************************************************** -->
-    <!--main content start-->
-    <section id="main-content" style="height:930px !important; overflow: hidden;">
+        <!--main content start-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <section id="main-content" style="height:930px !important; overflow: hidden;">
       <section class="wrapper site-min-height">
         <!-- page start-->
         <div class="chat-room mt">
@@ -117,10 +119,9 @@
             <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
-                  <span></span>
-                  <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#modals"></i></a>
-                  <input type ="hidden" value ="<?php echo $getdetails["id"]?>" name="id">
-                <?php require_once('modalNote.php')?>
+                  <span style="float: right; margin-left: 0px; font-size: 1.5em;" class="badge" id="showcase"></span>
+                  <a><i style="margin-right: -10.5px;" class="dm-icon fa fa-file fa-3x" id="button" data-toggle="modal" data-target="#modals"></i></a>
+                <?php require_once('../modalNote.php')?>
                 </div>
                 <h4>Project Notes</h4>
                 </div>
@@ -147,7 +148,7 @@
             </div>
           </div>
         </div>
-</div>          
+      </div>          
           </aside>
         </div>
         <!-- page end-->
@@ -156,3 +157,6 @@
     </section>
     <!-- /MAIN CONTENT -->
     <!--main content end-->
+    
+    <script src="../assets/js/FetchNotes.js"></script>  
+    

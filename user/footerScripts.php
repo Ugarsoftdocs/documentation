@@ -7,6 +7,7 @@
 <script src=https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js></script>
 
 <script src="datatable/datatable.js"></script>
+<script src="datatable/datatable.js"></script>
 
   <!-- js placed at the end of the document so the pages load faster -->
  <script src="lib/jquery/jquery.min.js"></script>
@@ -22,6 +23,8 @@
   <!--script for this page-->
   <script src="lib/sparkline-chart.js"></script>
   <script src="lib/zabuto_calendar.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="../assets/js/FetchNotes.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
