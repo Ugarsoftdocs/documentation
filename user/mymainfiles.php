@@ -86,8 +86,7 @@
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon" >
                   <span></span>
-                <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#myModal"></i></a>
-                <?php require_once('datatable/modaltable.php')?> 
+                <a><i class="dm-icon fa fa-file fa-3x"  data-target="#myModal"></i></a>
                 </div>
                 <h4>Project Documents</h4>
                 </div>
@@ -108,8 +107,8 @@
               <div class="dmbox" style="box-shadow: 10px 10px 5px grey; background-color: #ecf0f1;">
                 <div class="service-icon">
                   <span></span>
-                  <a><i class="dm-icon fa fa-file fa-3x" data-toggle="modal" data-target="#myModal"></i></a>
-                <?php require_once('datatable/modaltable.php')?> 
+                  <a><i class="dm-icon fa fa-file fa-3x"  data-target="#myModal"></i></a>
+
                 </div>
                 <h4>Project Videos</h4>
                 </div>
@@ -123,7 +122,7 @@
                 <?php require_once('modalNote.php')?>
                 </div>
                 <h4>Project Notes</h4>
-                </div>
+                </div>  
             </div>
             <!-- end dmbox -->
             <div class="col-lg-4 col-md-4 col-sm-12" style="margin-top:40px">

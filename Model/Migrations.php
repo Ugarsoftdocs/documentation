@@ -1,11 +1,12 @@
 <?php
-require_once('Invites.php');
+require_once('imagefile.php');
 
 
 
-$change = new Invites;
+$change = new Imagefile;
 
 
 $change->create();  
 
 
+?>

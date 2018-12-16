@@ -182,6 +182,23 @@ class Model extends Database{
 
 
     }
+    public function uploadImage($columns,$values,$table){
+        $key1 = "";
+        $val1 = "";
+        foreach($columns as $key=> $value){
+            $key1 .= $key.',';
+        }
+        foreach($values as $key=> $value){
+             $val1 .= $value.',';
+         }
+         $key1 = trim($key1, ',');
+         $val1 = trim($val1, ',');
+
+         $sql = "INSERT INTO $table ($key1) VALUES ($val1)";
+        
+         $result = $this->conn->query($sql);
+         return $result;
+    }
         
 
 
