@@ -87,6 +87,10 @@
 <script src="datatable/datatable.js"></script>
 <script src="serverRequests/getproject.js"></script>
 <script src="lib/jquery/jquery.min.js"></script>
+<script src="datatable/datatable.js"></script>
+
+  <!-- js placed at the end of the document so the pages load faster -->
+ <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="lib/jquery.scrollTo.min.js"></script>
