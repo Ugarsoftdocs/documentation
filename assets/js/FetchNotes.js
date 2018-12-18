@@ -1,7 +1,6 @@
 
  var allNotes = [];
  var showNotes = [];
- DisplayNoteNumber();
 
     $(".button").click(function() {
         var name = $("input#name").val();
@@ -57,7 +56,8 @@
         var id = $("input#id").val();
         $.get("../user/ModalGetNotes.php?id=" + id, function(data){
             allNotes =JSON.parse(data);
-            showNotes =JSON.parse(data);
+            showNotes =JSON.parse(data)
+            DisplayNoteNumber();
             $("#idd").val(0);
             DisplayUserNotes(JSON.parse(data));
         });
@@ -97,6 +97,8 @@
     }
 
     function DisplayNoteNumber(){
-        $("#showcase").html(("showNotes").length);
-        console.log(("showNotes").length);
+        $("#showcase").text(showNotes.length);
+        if(showNotes == null){
+            $("#showcase").text("0");
+        }
     }

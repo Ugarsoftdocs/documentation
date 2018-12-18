@@ -54,7 +54,6 @@ class Model extends Database{
         $columns = trim($columns, ',');
         $values = trim($values, ',');
         $sql = "insert into $table($columns) values ($values)";
-        
         $result = $this->conn->query($sql);
         return $result;
     }
@@ -106,7 +105,7 @@ class Model extends Database{
     }
 
      $sql = "SELECT $col FROM $table $condition";
-  
+     
      $result = $this->conn->query($sql);
     
      return $result->num_rows > 0 ? $result : null;

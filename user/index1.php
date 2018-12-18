@@ -287,7 +287,7 @@ function getAuthenticatedUser(){
             </ul>
           </li>
           <li>
-            <a href="">
+            <a href="contactRemake.php">
               <i class="fa fa-gear"></i>
               <span>Setting</span>
             </a>

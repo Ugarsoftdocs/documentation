@@ -1,12 +1,12 @@
 <?php
-require_once('imagefile.php');
+require_once('User.php');
 
 
 
-$change = new Imagefile;
+$change = new User;
 
 
-$change->create();  
+$change->addcolumn(['role'  => 'int NOT NULL'], " after users_id");  
 
 
 ?>
