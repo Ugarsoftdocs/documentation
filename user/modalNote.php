@@ -1,13 +1,6 @@
 <?php
 require_once('../model/ProjectNote.php');
 
-
-   
-
-   
-   
-
-
 ?>
       <div class="modal fade" id="modals" role="dialog">
             <div class="modal-dialog">

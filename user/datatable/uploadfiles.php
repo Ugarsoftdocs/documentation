@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/imagefile.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/User.php');
-function uploadfiles(){
+function uploadfiles(){~
    if(isset($_FILES['image'])){
       $errors= array();
       $idz = "";

@@ -66,12 +66,17 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
 
       xmlDoc = JSON.parse(this.responseText);
-
-        document.getElementById("screated_by").innerHTML = xmlDoc.created_by;
-        document.getElementById("images").innerHTML = xmlDoc.image; 
-        document.getElementById("dates").innerHTML = xmlDoc.date;
-        document.getElementById("sizes").innerHTML = xmlDoc.size;
-          
+      var tableContent = "";
+        for(i=0; i<xmlDoc.length; i++){
+            var image = xmlDoc[i].image;
+            var created_by = xmlDoc[i].created_by;
+            var date = xmlDoc[i].date;
+            var size = xmlDoc[i].size;
+        
+                tableContent = tableContent + "<tr><td>" + image + "</td><td>" + created_by + "</td><td>" + date + "</td><td>" + size + "</tr>";
+        }
+        document.getElementById("its").innerHTML = tableContent;
+         
     }
 }
 xmlhttp.open("GET", "datatable/getUploadedfiles.php", true);
