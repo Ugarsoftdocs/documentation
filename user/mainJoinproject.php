@@ -21,7 +21,7 @@
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
                   <form action="" method="POST">
-                    <h5 class="text-primary"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
+                    <h5 class="text-primary"><a href=""><?php echo $project["project"]?></a></h5>
                     <p><span class="text-muted">Admin : </span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
                     <input type ="hidden" value ="<?php echo $project["id"]?>" name="id">
@@ -39,7 +39,7 @@
                        Join
                     </a>
                     <?php }?>
-                  </form>
+                  </form> 
 
                 </div>
               <?php }?>

@@ -347,7 +347,7 @@ getMyProjects();
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="room-box" style="width: 50%; height: 30%;"></div><br><br>
+            <div class="room-box" style="width: 50%"><br><br><br><br><br><br><br><br><br><br><br></div><br><br>
             <div class="invite-row" style="background-color: white; width: 70%">
               <h4 class="pull-left"><?php echo $userProfile["name"]; ?>'s Projects</h4>
             </div>
