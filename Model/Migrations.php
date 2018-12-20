@@ -1,9 +1,9 @@
 <?php
-require_once('imagefile.php');
+require_once('ProfileImage.php');
 
 
 
-$change = new Imagefile;
+$change = new ProfileImage;
 
 
 $change->create();  
