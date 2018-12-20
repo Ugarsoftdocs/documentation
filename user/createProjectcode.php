@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $errors = $valid->validatee(['name'=>"$name",'project'=>"$project", 'message'=>"$message"]);
   if(count($errors) == 0){
     $myproject = new Project;
-    $myproject->insert(['name'=>"$name",'project'=>"$project", 'description'=>"$message"]);
+    $myproject->insert(['name'=>"$name", 'users_id' => $_SESSION['userId'], 'project'=>"$project", 'description'=>"$message"]);
     if ($myproject) {           
       $check = $myproject->query(['id'], " order by id desc limit 1");
       if($check != null){

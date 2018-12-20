@@ -28,11 +28,11 @@
                      
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
                       <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
-                       +View
-                    </a><button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;">+ Invite</button>
+                       View
+                    </a><button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
                     <?php require_once('Notification/inviteUsers.php')?>
                     <?php require_once('Notification/inviteUsersmodal.php')?>
-                    <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" >+ Delete</button>
+                    <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" > Delete</button>
                     <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }else{?>
                       <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type">

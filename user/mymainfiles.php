@@ -28,41 +28,18 @@
               <h4 class="pull-left">Recent Activities</h4>
             </div>
             <ul class="chat-available-user">
+            <?php foreach($historys as $key => $history){?>
+            <?php $time = $history["created_at"]?>
               <li>
-                <a href="chat_room.html">
+                <a href="contactRemake.php?id=<?php echo $history["users_id"]?>">
                   <img class="img-circle" src="img/friends/fr-02.jpg" width="32">
-                  Paul Brown
-                  <span class="text-muted">1h:02m</span>
+                  <?php echo $history["name"]?>
+                  <?php echo $history["description"]?>
+                  <span class="text-muted">at <?php echo date("h:ia d-m-Y", strtotime($time))?></span>
                   </a>
               </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-05.jpg" width="32">
-                  David Duncan
-                  <span class="text-muted">1h:08m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-07.jpg" width="32">
-                  Laura Smith
-                  <span class="text-muted">1h:10m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-08.jpg" width="32">
-                  Julia Schultz
-                  <span class="text-muted">3h:00m</span>
-                  </a>
-              </li>
-              <li>
-                <a href="chat_room.html">
-                  <img class="img-circle" src="img/friends/fr-01.jpg" width="32">
-                  Frank Arias
-                  <span class="text-muted">4h:22m</span>
-                  </a>
-              </li>
+              <?php }?>
+              
             </ul>
             
         

@@ -48,7 +48,7 @@
                           <form name="contact" action="" method="">
                             <div style="border:2px solid silver !important; height: 493px !important; overflow-y: scroll; overflow-x: hidden;">
                                 <input type="text" name="name" id="name"  value="" class="form-control titlearea">
-                                <textarea name="message" id="message" value="" rows="50" cols="67" class="bodyarea"></textarea>
+                                <textarea name="message" id="message" value="" rows="50" cols="77" class="bodyarea"></textarea>
                                 <input type ="hidden" id="id" value ="<?php echo $getdetails["id"]?>" name="id"> 
                                 <input type="hidden" id="submitt" name="submitt" value="submitt">
                                 <input type="hidden" id="idd" name="idd" value="0">  
