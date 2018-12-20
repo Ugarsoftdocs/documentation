@@ -31,7 +31,7 @@
             <?php foreach($historys as $key => $history){?>
             <?php $time = $history["created_at"]?>
               <li>
-                <a href="contactRemake.php?id=<?php echo $history["users_id"]?>">
+                <a href="Contactinfo.php?id=<?php echo $history["users_id"]?>">
                   <img class="img-circle" src="img/friends/fr-02.jpg" width="32">
                   <?php echo $history["name"]?>
                   <?php echo $history["description"]?>

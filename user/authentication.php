@@ -3,6 +3,7 @@ require_once('../model/User.php');
 $user = new User();
 $user->isAuthenticated();
 
+
       
 function getAuthenticatedUser(){
   $profilename = new User();

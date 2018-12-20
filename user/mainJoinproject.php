@@ -20,7 +20,7 @@
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
-                  <form action="" method="POST">
+                  <form action="myfiles.php?id=<?php echo $project['id']; ?>" method="POST">
                     <h5 class="text-primary"><a href=""><?php echo $project["project"]?></a></h5>
                     <p><span class="text-muted">Admin : </span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
@@ -35,9 +35,9 @@
                     <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" > Delete</button>
                     <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }else{?>
-                      <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type">
+                      <button type="submit" class="pull-right btn btn-theme02" name="form-type">
                        Join
-                    </a>
+                    </button>
                     <?php }?>
                   </form> 
 

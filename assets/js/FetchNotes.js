@@ -56,7 +56,6 @@
         var id = $("input#id").val();
         DisplayNoteNumber();
         $.get("../user/ModalGetNotes.php?id=" + id, function(data){
-            
             allNotes =JSON.parse(data);
             showNotes =JSON.parse(data)
             DisplayNoteNumber();
@@ -100,5 +99,4 @@
 
     function DisplayNoteNumber(){
       $("#showcase").text(showNotes.length);
-       
     }

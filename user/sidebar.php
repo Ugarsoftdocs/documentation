@@ -1,4 +1,18 @@
+<?php
+require_once('../model/Role.php');
 
+function getRoleeAdmin(){
+  $roleeadmin = new Role();
+  
+  $result = $roleeadmin->query(['id'], " where names = 'Admin'");
+  if($result != null){
+    $row = $result->fetch_assoc();
+    return $row;
+   
+  }
+}
+$roleeAdmin = getRoleeAdmin();
+?>
 <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
@@ -28,6 +42,13 @@
               <li><a href="Myproject.php">My Projects</a></li>           
             </ul>
           </li>
+          <?php if($_SESSION['role'] == $roleeAdmin["id"]){?>
+          <li>
+            <a href="Contactroles.php">
+              <i class="fa fa-users"></i>
+              <span>Roles</span>
+            </a>
+          </li>
           <li>
             <a href="">
               <i class="fa fa-gear"></i>
@@ -40,6 +61,20 @@
               <span>Logout</span>
             </a>
           </li>
+          <?php }else{?>
+          <li>
+            <a href="">
+              <i class="fa fa-gear"></i>
+              <span>Setting</span>
+            </a>
+          </li>
+          <li>
+            <a href="../login/Log_out.php">
+              <i class="fa fa-sign-out"></i>
+              <span>Logout</span>
+            </a>
+          </li>
+          <?php }?>
         <ul>
         <!-- sidebar menu end-->
       </div>
