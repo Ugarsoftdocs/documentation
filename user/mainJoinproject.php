@@ -20,16 +20,17 @@
         <div class="room-desk">
               <?php foreach($projects as $key => $project){?>
                 <div class="room-box" >
-                  <form action="" method="POST">
+                  <form action="" method="POST" id = "myForm">
                     <h5 class="text-primary"><a href="chat_room.html"><?php echo $project["project"]?></a></h5>
                     <p><span class="text-muted">Admin : </span><?php echo $project["name"]?> | <span class="text-muted">Members :</span> 98 | <span class="text-muted">Last Activity :</span> 2 min ago</p>
                     <p><?php echo $project["description"]?></p>
-                    <input type ="hidden" value ="<?php echo $project["id"]?>" name="id">
-                     
+                    <input type ="hidden" value ="<?php echo $project['id']?>" name="id" id = "hidden_id">
+                    
                     <?php if($project['users_id'] == $_SESSION['userId']){?>
                       <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
                        View
                     </a><button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
+                            
                     <?php require_once('Notification/inviteUsers.php')?>
                     <?php require_once('Notification/inviteUsersmodal.php')?>
                     <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" > Delete</button>

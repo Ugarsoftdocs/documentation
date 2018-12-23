@@ -4,13 +4,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/projectUser.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/User.php');
 
  
-
 $invites = [];
 $rowers1 = [];
 $rowers2 = [];
-if (isset($project['id'])){
-      $id = $project['id'];
-}
+ $id = $project['id'];
 
 function getInvite(){
     global $invites;
@@ -25,7 +22,7 @@ function getInvite(){
         while($rowe = $check->fetch_assoc()){
 
             $rowers1[] = $rowe;
-           //  var_dump($rowers1);
+             //var_dump($rowers1);
         }
       
     }
@@ -40,7 +37,7 @@ function getInvite(){
             
          //fetch the users_id for the given project_id and push into an array
             $rowers2[]= $rower['users_id'];
-                        
+            //var_dump($rowers2);            
         }
       } 
          $invites = getDiff($rowers1,$rowers2);  
