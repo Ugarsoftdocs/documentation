@@ -1,9 +1,9 @@
 <?php
-require_once('User.php');
+require_once('ProfileImage.php');
 
 
 
-$change = new User;
+$change = new ProfileImage;
 
 
 $change->addcolumn(['role'  => 'int NOT NULL'], " after users_id");  

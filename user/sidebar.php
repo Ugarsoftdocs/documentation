@@ -13,11 +13,16 @@ function getRoleeAdmin(){
 }
 $roleeAdmin = getRoleeAdmin();
 ?>
+<?php require_once('UploadProfileImage.php')?>
 <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <div class="centered"><img src="img/ui-sam.jpg" class="img-circle" width="80"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <form action="" method="POST" id="uploadpp" enctype="multipart/form-data">
+          <div class="centered"><img src="datatable/uploads/<?php displayProfileImage();?>" class="img-circle" width="100" height="100"><i style="position: relative; bottom: -30px; right: 5px;" class="fa fa-camera"></i></div>
+          <input type="file" name = "uploadPix" value = "uploadPix" placeholder="Choose">
+          <input type="submit" name = "submit" value = "submit" placeholder="Save">         
+         </form>
           <h5 class="centered"><?php echo getAuthenticatedUser(); ?></h5>
           <li class="mt">
             <a href="index1.php">
