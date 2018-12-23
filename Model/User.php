@@ -90,7 +90,7 @@ class User extends Model{
           return $row;
          
         }
-      }
+    }
 
     public function isAuthenticatedd(){
       $roleAdminn = $this->getRoleAdminn();

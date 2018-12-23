@@ -1,11 +1,25 @@
 <?php
   require_once('validation/RegisterValidator.php');
   require_once('validation/LoginValidator.php');
-
-  require_once('model/User.php');
+  require_once('model/Role.php');
+  
   
   $errors = [];
   $logerror = "";
+
+  function getEditorRole(){
+    $editorrole = new Role();
+    
+    $result = $editorrole->query(['id'], " where names = 'Editor'");
+    if($result != null){
+      $row = $result->fetch_assoc();
+      return $row;
+    }
+  }
+  $editorRole = getEditorRole();
+
+  require_once('model/User.php');
+
    
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if($_POST['form-type'] == 'register'){
@@ -15,7 +29,9 @@
        // submit form
        $user = new User();
        unset($_POST['form-type']);
+       $_POST['role'] = 2;
        $result = $user->insert($_POST);
+       
        if($result){
          $user->authenticateUser($_POST['email'], md5($_POST['password']));
         }

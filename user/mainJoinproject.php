@@ -26,21 +26,48 @@
                     <p><?php echo $project["description"]?></p>
                     <input type ="hidden" value ="<?php echo $project["id"]?>" name="id">
                      
-                    <?php if($project['users_id'] == $_SESSION['userId']){?>
+                   
+                    <?php if($_SESSION['role'] == $adminRole["id"] AND $project['users_id'] == $_SESSION['userId']){?>
                       <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
-                       View
-                    </a><button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
-                    <?php require_once('Notification/inviteUsers.php')?>
-                    <?php require_once('Notification/inviteUsersmodal.php')?>
-                    <button type="button" data-toggle="modal" data-target="#myModal1" class="pull-right btn btn-theme02" > Delete</button>
-                    <?php require_once('Notification/DeleteUsers.php')?>
-                    <?php }else{?>
-                      <button type="submit" class="pull-right btn btn-theme02" name="form-type">
-                       Join
-                    </button>
+                        View
+                      </a>
+                      <button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
+                      <?php require_once('Notification/inviteUsers.php')?>
+                      <?php require_once('Notification/inviteUsersmodal.php')?>
+                      <button type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-theme04 pull-right" > Delete</button>
+                      <?php require_once('Notification/DeleteUsers.php')?>
+                    <?php }?>
+                    <?php if($_SESSION['role'] == $adminRole["id"] AND $project['users_id'] != $_SESSION['userId']){?>
+                      <button type="submit" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
+                        Join
+                      </button>
+                      <button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
+                      <?php require_once('Notification/inviteUsers.php')?>
+                      <?php require_once('Notification/inviteUsersmodal.php')?>
+                      <button type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-theme04 pull-right" > Delete</button>
+                      <?php require_once('Notification/DeleteUsers.php')?>
+                    <?php }?>
+                    <?php if($_SESSION['role'] != $adminRole["id"] AND $project['users_id'] == $_SESSION['userId'] AND $project['owner'] != $_SESSION['userId']){?>
+                      <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
+                        View
+                      </a>
+                    <?php }?>
+                    <?php if($_SESSION['role'] != $adminRole["id"] AND $project['users_id'] != $_SESSION['userId']){?>
+                      <button type="submit" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
+                        Join
+                      </button>
+                    <?php }?>
+                    <?php if($_SESSION['role'] != $adminRole["id"] AND $project['owner'] == $_SESSION['userId']){?>
+                      <a href= "myfiles.php?id=<?php echo $project['id']; ?>" class="pull-right btn btn-theme02" name="form-type" style ="margin-left: 6px;">
+                        View
+                      </a>
+                      <button type="button" data-toggle="modal" data-target="#myModal"  class="pull-right btn btn-theme02" style = "margin-left: 6px;"> Invite</button>
+                      <?php require_once('Notification/inviteUsers.php')?>
+                      <?php require_once('Notification/inviteUsersmodal.php')?>
+                      <button type="button" data-toggle="modal" data-target="#myModal1" class="btn btn-theme04 pull-right" > Delete</button>
+                      <?php require_once('Notification/DeleteUsers.php')?>
                     <?php }?>
                   </form> 
-
                 </div>
               <?php }?>
      

@@ -57,7 +57,7 @@
         DisplayNoteNumber();
         $.get("../user/ModalGetNotes.php?id=" + id, function(data){
             allNotes =JSON.parse(data);
-            showNotes =JSON.parse(data)
+            showNotes =JSON.parse(data);
             DisplayNoteNumber();
             $("#idd").val(0);
             DisplayUserNotes(JSON.parse(data));
