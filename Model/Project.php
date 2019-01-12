@@ -15,6 +15,7 @@ class Project extends Model{
         $this->table  = 'projects';
         $this->columns = [
             'id' => 'int auto_increment primary key',
+            'users_id' => 'INT NOT NULL',
             'name' => 'VARCHAR(30) NOT NULL',
             'project' => 'VARCHAR(150)',
             'description' => 'VARCHAR(300)',

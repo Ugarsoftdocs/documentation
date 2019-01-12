@@ -1,12 +1,12 @@
 <?php
-require_once('ProfileImage.php');
+require_once('HistoryLog.php');
 
 
 
-$change = new ProfileImage;
+$change = new HistoryLog;
 
 
-$change->addcolumn(['role'  => 'int NOT NULL'], " after users_id");  
+$change->create();  
 
 
 ?>

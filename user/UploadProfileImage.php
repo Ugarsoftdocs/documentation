@@ -51,12 +51,19 @@ if(isset($_SESSION['userId'])){
 }
 
 $image = new ProfileImage;
-$result = $image->query(['image'], "order by id desc limit 1");
+$result = $image->query(['image'], "where userid = $session");
+if($result){
 while($row = $result->fetch_assoc()){
 
     $output = $row;
+    }
+  }else{
+    $result = $image->query(['image'], "where image = profileImage.png"); 
+    while($row = $result->fetch_assoc()){
 
-}
+        $output = $row;
+  }
+  }
 echo $output['image'];
 
 }

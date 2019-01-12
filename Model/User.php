@@ -1,5 +1,8 @@
 <?php
 require_once('Model.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/documentation/model/Role.php');
+
+
 
 class User extends Model{
     public $table;
@@ -41,7 +44,7 @@ class User extends Model{
         return $this->updateRecord($data, $condition, $this->table);
     }
 
-    public function query($columns, $condition){
+    public function query($columns, $condition = ""){
         return $this->getSingleRecord($columns, $condition, $this->table);
     }
     public function queryAll($columne){
@@ -59,13 +62,14 @@ class User extends Model{
         $this->tableDrop($this->table);
     }
 
-    public function authenticateUser($email, $password, $location = 'user/index1.php'){
-        $result = $this->query(['users_id'], " where email = '$email' AND password = '$password'");
+    public function authenticateUser($email, $password, $location = 'user/Dashboard.php'){
+        $result = $this->query(['users_id', 'role'], " where email = '$email' AND password = '$password'");
         
         if($result != null){
            $row = $result->fetch_assoc();
            
             $_SESSION['userId'] = $row['users_id'];
+            $_SESSION['role'] = $row['role'];
           header("Location: $location");
         }
     }
@@ -73,6 +77,25 @@ class User extends Model{
     public function isAuthenticated(){
         
         if(!isset($_SESSION['userId'])) {
+            header('Location: ../index.php');
+        }
+    }
+
+    function getRoleAdminn(){
+        $roleadminn = new Role();
+        
+        $result = $roleadminn->query(['id'], " where names = 'Admin'");
+        if($result != null){
+          $row = $result->fetch_assoc();
+          return $row;
+         
+        }
+    }
+
+    public function isAuthenticatedd(){
+      $roleAdminn = $this->getRoleAdminn();
+        
+        if($_SESSION['role'] != $roleAdminn["id"]){
             header('Location: ../index.php');
         }
     }

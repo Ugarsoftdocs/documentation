@@ -48,13 +48,20 @@ class Model extends Database{
                 $values .= "'$hashed',";
                 continue;
             }
+            if($key == 'role'){
+                $values .= $value;
+                continue;
+            }
             $values .= "'$value',";
         }
 
         $columns = trim($columns, ',');
         $values = trim($values, ',');
+       
         $sql = "insert into $table($columns) values ($values)";
+        
         $result = $this->conn->query($sql);
+       
         return $result;
     }
     

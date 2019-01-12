@@ -15,7 +15,8 @@ class HistoryLog extends Model{
         $this->table  = 'history_logs';
         $this->columns = [
             'id' => 'int auto_increment primary key',
-            'project_id' => 'VARCHAR(30) NOT NULL',
+            'users_id' => 'int NOT NULL',
+            'projects_id' => 'VARCHAR(30) NOT NULL',
             'description' => 'VARCHAR(300)',
             'created_at' =>'timestamp(6)',
             'updated_at' =>'timestamp(6)' 
